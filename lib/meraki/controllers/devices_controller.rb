@@ -16,18 +16,20 @@ module Meraki
       self.class.instance
     end
 
-    # Return the uplink information for a device.
+    # Blink the LEDs on a device
     # @param [String] network_id Required parameter: Example:
     # @param [String] serial Required parameter: Example:
+    # @param [BlinkNetworkDeviceLedsModel] blink_network_device_leds Optional
+    # parameter: Example:
     # @return Mixed response from the API call
-    def get_network_device_uplink(options = {})
+    def blink_network_device_leds(options = {})
       # Validate required parameters.
       validate_parameters(
         'network_id' => options['network_id'],
         'serial' => options['serial']
       )
       # Prepare query url.
-      _path_url = '/networks/{networkId}/devices/{serial}/uplink'
+      _path_url = '/networks/{networkId}/devices/{serial}/blinkLeds'
       _path_url = APIHelper.append_url_with_template_parameters(
         _path_url,
         'networkId' => options['network_id'],
@@ -36,57 +38,23 @@ module Meraki
       _query_builder = Configuration.base_uri.dup
       _query_builder << _path_url
       _query_url = APIHelper.clean_url _query_builder
-      # Prepare headers.
-      _headers = {
-        'accept' => 'application/json'
-      }
-      # Prepare and execute HttpRequest.
-      _request = @http_client.get(
-        _query_url,
-        headers: _headers
-      )
-      CustomHeaderAuth.apply(_request)
-      _context = execute_request(_request)
-      validate_response(_context)
-      # Return appropriate response type.
-      decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
-        _context.response.raw_body.nil? ||
-        _context.response.raw_body.to_s.strip.empty?
-      decoded
-    end
 
-    # Remove a single device
-    # @param [String] network_id Required parameter: Example:
-    # @param [String] serial Required parameter: Example:
-    # @return Mixed response from the API call
-    def remove_network_device(options = {})
-      # Validate required parameters.
-      validate_parameters(
-        'network_id' => options['network_id'],
-        'serial' => options['serial']
-      )
-      # Prepare query url.
-      _path_url = '/networks/{networkId}/devices/{serial}/remove'
-      _path_url = APIHelper.append_url_with_template_parameters(
-        _path_url,
-        'networkId' => options['network_id'],
-        'serial' => options['serial']
-      )
-      _query_builder = Configuration.base_uri.dup
-      _query_builder << _path_url
-      _query_url = APIHelper.clean_url _query_builder
       # Prepare headers.
       _headers = {
-        'accept' => 'application/json'
+        'accept' => 'application/json',
+        'content-type' => 'application/json; charset=utf-8'
       }
+
       # Prepare and execute HttpRequest.
       _request = @http_client.post(
         _query_url,
-        headers: _headers
+        headers: _headers,
+        parameters: options['blink_network_device_leds'].to_json
       )
       CustomHeaderAuth.apply(_request)
       _context = execute_request(_request)
       validate_response(_context)
+
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
         _context.response.raw_body.nil? ||
@@ -114,10 +82,12 @@ module Meraki
       _query_builder = Configuration.base_uri.dup
       _query_builder << _path_url
       _query_url = APIHelper.clean_url _query_builder
+
       # Prepare headers.
       _headers = {
         'accept' => 'application/json'
       }
+
       # Prepare and execute HttpRequest.
       _request = @http_client.post(
         _query_url,
@@ -126,6 +96,135 @@ module Meraki
       CustomHeaderAuth.apply(_request)
       _context = execute_request(_request)
       validate_response(_context)
+
+      # Return appropriate response type.
+      decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
+        _context.response.raw_body.nil? ||
+        _context.response.raw_body.to_s.strip.empty?
+      decoded
+    end
+
+    # Remove a single device
+    # @param [String] network_id Required parameter: Example:
+    # @param [String] serial Required parameter: Example:
+    # @return Mixed response from the API call
+    def remove_network_device(options = {})
+      # Validate required parameters.
+      validate_parameters(
+        'network_id' => options['network_id'],
+        'serial' => options['serial']
+      )
+      # Prepare query url.
+      _path_url = '/networks/{networkId}/devices/{serial}/remove'
+      _path_url = APIHelper.append_url_with_template_parameters(
+        _path_url,
+        'networkId' => options['network_id'],
+        'serial' => options['serial']
+      )
+      _query_builder = Configuration.base_uri.dup
+      _query_builder << _path_url
+      _query_url = APIHelper.clean_url _query_builder
+
+      # Prepare headers.
+      _headers = {
+        'accept' => 'application/json'
+      }
+
+      # Prepare and execute HttpRequest.
+      _request = @http_client.post(
+        _query_url,
+        headers: _headers
+      )
+      CustomHeaderAuth.apply(_request)
+      _context = execute_request(_request)
+      validate_response(_context)
+
+      # Return appropriate response type.
+      decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
+        _context.response.raw_body.nil? ||
+        _context.response.raw_body.to_s.strip.empty?
+      decoded
+    end
+
+    # Claim a device into a network
+    # @param [String] network_id Required parameter: Example:
+    # @param [ClaimNetworkDevicesModel] claim_network_devices Required
+    # parameter: Example:
+    # @return Mixed response from the API call
+    def claim_network_devices(options = {})
+      # Validate required parameters.
+      validate_parameters(
+        'network_id' => options['network_id'],
+        'claim_network_devices' => options['claim_network_devices']
+      )
+      # Prepare query url.
+      _path_url = '/networks/{networkId}/devices/claim'
+      _path_url = APIHelper.append_url_with_template_parameters(
+        _path_url,
+        'networkId' => options['network_id']
+      )
+      _query_builder = Configuration.base_uri.dup
+      _query_builder << _path_url
+      _query_url = APIHelper.clean_url _query_builder
+
+      # Prepare headers.
+      _headers = {
+        'accept' => 'application/json',
+        'content-type' => 'application/json; charset=utf-8'
+      }
+
+      # Prepare and execute HttpRequest.
+      _request = @http_client.post(
+        _query_url,
+        headers: _headers,
+        parameters: options['claim_network_devices'].to_json
+      )
+      CustomHeaderAuth.apply(_request)
+      _context = execute_request(_request)
+      validate_response(_context)
+
+      # Return appropriate response type.
+      decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
+        _context.response.raw_body.nil? ||
+        _context.response.raw_body.to_s.strip.empty?
+      decoded
+    end
+
+    # Return the uplink information for a device.
+    # @param [String] network_id Required parameter: Example:
+    # @param [String] serial Required parameter: Example:
+    # @return Mixed response from the API call
+    def get_network_device_uplink(options = {})
+      # Validate required parameters.
+      validate_parameters(
+        'network_id' => options['network_id'],
+        'serial' => options['serial']
+      )
+      # Prepare query url.
+      _path_url = '/networks/{networkId}/devices/{serial}/uplink'
+      _path_url = APIHelper.append_url_with_template_parameters(
+        _path_url,
+        'networkId' => options['network_id'],
+        'serial' => options['serial']
+      )
+      _query_builder = Configuration.base_uri.dup
+      _query_builder << _path_url
+      _query_url = APIHelper.clean_url _query_builder
+
+      # Prepare headers.
+      _headers = {
+        'accept' => 'application/json'
+      }
+
+      # Prepare and execute HttpRequest.
+      _request = @http_client.get(
+        _query_url,
+        headers: _headers
+      )
+      CustomHeaderAuth.apply(_request)
+      _context = execute_request(_request)
+      validate_response(_context)
+
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
         _context.response.raw_body.nil? ||
@@ -154,10 +253,12 @@ module Meraki
       _query_builder = Configuration.base_uri.dup
       _query_builder << _path_url
       _query_url = APIHelper.clean_url _query_builder
+
       # Prepare headers.
       _headers = {
         'accept' => 'application/json'
       }
+
       # Prepare and execute HttpRequest.
       _request = @http_client.get(
         _query_url,
@@ -166,49 +267,7 @@ module Meraki
       CustomHeaderAuth.apply(_request)
       _context = execute_request(_request)
       validate_response(_context)
-      # Return appropriate response type.
-      decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
-        _context.response.raw_body.nil? ||
-        _context.response.raw_body.to_s.strip.empty?
-      decoded
-    end
 
-    # Blink the LEDs on a device
-    # @param [String] network_id Required parameter: Example:
-    # @param [String] serial Required parameter: Example:
-    # @param [BlinkNetworkDeviceLedsModel] blink_network_device_leds Optional
-    # parameter: Example:
-    # @return Mixed response from the API call
-    def blink_network_device_leds(options = {})
-      # Validate required parameters.
-      validate_parameters(
-        'network_id' => options['network_id'],
-        'serial' => options['serial']
-      )
-      # Prepare query url.
-      _path_url = '/networks/{networkId}/devices/{serial}/blinkLeds'
-      _path_url = APIHelper.append_url_with_template_parameters(
-        _path_url,
-        'networkId' => options['network_id'],
-        'serial' => options['serial']
-      )
-      _query_builder = Configuration.base_uri.dup
-      _query_builder << _path_url
-      _query_url = APIHelper.clean_url _query_builder
-      # Prepare headers.
-      _headers = {
-        'accept' => 'application/json',
-        'content-type' => 'application/json; charset=utf-8'
-      }
-      # Prepare and execute HttpRequest.
-      _request = @http_client.post(
-        _query_url,
-        headers: _headers,
-        parameters: options['blink_network_device_leds'].to_json
-      )
-      CustomHeaderAuth.apply(_request)
-      _context = execute_request(_request)
-      validate_response(_context)
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
         _context.response.raw_body.nil? ||
@@ -236,10 +295,12 @@ module Meraki
       _query_builder = Configuration.base_uri.dup
       _query_builder << _path_url
       _query_url = APIHelper.clean_url _query_builder
+
       # Prepare headers.
       _headers = {
         'accept' => 'application/json'
       }
+
       # Prepare and execute HttpRequest.
       _request = @http_client.get(
         _query_url,
@@ -248,6 +309,92 @@ module Meraki
       CustomHeaderAuth.apply(_request)
       _context = execute_request(_request)
       validate_response(_context)
+
+      # Return appropriate response type.
+      decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
+        _context.response.raw_body.nil? ||
+        _context.response.raw_body.to_s.strip.empty?
+      decoded
+    end
+
+    # List the devices in a network
+    # @param [String] network_id Required parameter: Example:
+    # @return Mixed response from the API call
+    def get_network_devices(network_id)
+      # Validate required parameters.
+      validate_parameters(
+        'network_id' => network_id
+      )
+      # Prepare query url.
+      _path_url = '/networks/{networkId}/devices'
+      _path_url = APIHelper.append_url_with_template_parameters(
+        _path_url,
+        'networkId' => network_id
+      )
+      _query_builder = Configuration.base_uri.dup
+      _query_builder << _path_url
+      _query_url = APIHelper.clean_url _query_builder
+
+      # Prepare headers.
+      _headers = {
+        'accept' => 'application/json'
+      }
+
+      # Prepare and execute HttpRequest.
+      _request = @http_client.get(
+        _query_url,
+        headers: _headers
+      )
+      CustomHeaderAuth.apply(_request)
+      _context = execute_request(_request)
+      validate_response(_context)
+
+      # Return appropriate response type.
+      decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
+        _context.response.raw_body.nil? ||
+        _context.response.raw_body.to_s.strip.empty?
+      decoded
+    end
+
+    # Update the attributes of a device
+    # @param [String] network_id Required parameter: Example:
+    # @param [String] serial Required parameter: Example:
+    # @param [UpdateNetworkDeviceModel] update_network_device Optional
+    # parameter: Example:
+    # @return Mixed response from the API call
+    def update_network_device(options = {})
+      # Validate required parameters.
+      validate_parameters(
+        'network_id' => options['network_id'],
+        'serial' => options['serial']
+      )
+      # Prepare query url.
+      _path_url = '/networks/{networkId}/devices/{serial}'
+      _path_url = APIHelper.append_url_with_template_parameters(
+        _path_url,
+        'networkId' => options['network_id'],
+        'serial' => options['serial']
+      )
+      _query_builder = Configuration.base_uri.dup
+      _query_builder << _path_url
+      _query_url = APIHelper.clean_url _query_builder
+
+      # Prepare headers.
+      _headers = {
+        'accept' => 'application/json',
+        'content-type' => 'application/json; charset=utf-8'
+      }
+
+      # Prepare and execute HttpRequest.
+      _request = @http_client.put(
+        _query_url,
+        headers: _headers,
+        parameters: options['update_network_device'].to_json
+      )
+      CustomHeaderAuth.apply(_request)
+      _context = execute_request(_request)
+      validate_response(_context)
+
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
         _context.response.raw_body.nil? ||
@@ -293,10 +440,12 @@ module Meraki
         array_serialization: Configuration.array_serialization
       )
       _query_url = APIHelper.clean_url _query_builder
+
       # Prepare headers.
       _headers = {
         'accept' => 'application/json'
       }
+
       # Prepare and execute HttpRequest.
       _request = @http_client.get(
         _query_url,
@@ -305,83 +454,7 @@ module Meraki
       CustomHeaderAuth.apply(_request)
       _context = execute_request(_request)
       validate_response(_context)
-      # Return appropriate response type.
-      decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
-        _context.response.raw_body.nil? ||
-        _context.response.raw_body.to_s.strip.empty?
-      decoded
-    end
 
-    # Claim a device into a network
-    # @param [String] network_id Required parameter: Example:
-    # @param [ClaimNetworkDevicesModel] claim_network_devices Required
-    # parameter: Example:
-    # @return Mixed response from the API call
-    def claim_network_devices(options = {})
-      # Validate required parameters.
-      validate_parameters(
-        'network_id' => options['network_id'],
-        'claim_network_devices' => options['claim_network_devices']
-      )
-      # Prepare query url.
-      _path_url = '/networks/{networkId}/devices/claim'
-      _path_url = APIHelper.append_url_with_template_parameters(
-        _path_url,
-        'networkId' => options['network_id']
-      )
-      _query_builder = Configuration.base_uri.dup
-      _query_builder << _path_url
-      _query_url = APIHelper.clean_url _query_builder
-      # Prepare headers.
-      _headers = {
-        'accept' => 'application/json',
-        'content-type' => 'application/json; charset=utf-8'
-      }
-      # Prepare and execute HttpRequest.
-      _request = @http_client.post(
-        _query_url,
-        headers: _headers,
-        parameters: options['claim_network_devices'].to_json
-      )
-      CustomHeaderAuth.apply(_request)
-      _context = execute_request(_request)
-      validate_response(_context)
-      # Return appropriate response type.
-      decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
-        _context.response.raw_body.nil? ||
-        _context.response.raw_body.to_s.strip.empty?
-      decoded
-    end
-
-    # List the devices in a network
-    # @param [String] network_id Required parameter: Example:
-    # @return Mixed response from the API call
-    def get_network_devices(network_id)
-      # Validate required parameters.
-      validate_parameters(
-        'network_id' => network_id
-      )
-      # Prepare query url.
-      _path_url = '/networks/{networkId}/devices'
-      _path_url = APIHelper.append_url_with_template_parameters(
-        _path_url,
-        'networkId' => network_id
-      )
-      _query_builder = Configuration.base_uri.dup
-      _query_builder << _path_url
-      _query_url = APIHelper.clean_url _query_builder
-      # Prepare headers.
-      _headers = {
-        'accept' => 'application/json'
-      }
-      # Prepare and execute HttpRequest.
-      _request = @http_client.get(
-        _query_url,
-        headers: _headers
-      )
-      CustomHeaderAuth.apply(_request)
-      _context = execute_request(_request)
-      validate_response(_context)
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
         _context.response.raw_body.nil? ||
@@ -424,10 +497,12 @@ module Meraki
         array_serialization: Configuration.array_serialization
       )
       _query_url = APIHelper.clean_url _query_builder
+
       # Prepare headers.
       _headers = {
         'accept' => 'application/json'
       }
+
       # Prepare and execute HttpRequest.
       _request = @http_client.get(
         _query_url,
@@ -436,49 +511,7 @@ module Meraki
       CustomHeaderAuth.apply(_request)
       _context = execute_request(_request)
       validate_response(_context)
-      # Return appropriate response type.
-      decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
-        _context.response.raw_body.nil? ||
-        _context.response.raw_body.to_s.strip.empty?
-      decoded
-    end
 
-    # Update the attributes of a device
-    # @param [String] network_id Required parameter: Example:
-    # @param [String] serial Required parameter: Example:
-    # @param [UpdateNetworkDeviceModel] update_network_device Optional
-    # parameter: Example:
-    # @return Mixed response from the API call
-    def update_network_device(options = {})
-      # Validate required parameters.
-      validate_parameters(
-        'network_id' => options['network_id'],
-        'serial' => options['serial']
-      )
-      # Prepare query url.
-      _path_url = '/networks/{networkId}/devices/{serial}'
-      _path_url = APIHelper.append_url_with_template_parameters(
-        _path_url,
-        'networkId' => options['network_id'],
-        'serial' => options['serial']
-      )
-      _query_builder = Configuration.base_uri.dup
-      _query_builder << _path_url
-      _query_url = APIHelper.clean_url _query_builder
-      # Prepare headers.
-      _headers = {
-        'accept' => 'application/json',
-        'content-type' => 'application/json; charset=utf-8'
-      }
-      # Prepare and execute HttpRequest.
-      _request = @http_client.put(
-        _query_url,
-        headers: _headers,
-        parameters: options['update_network_device'].to_json
-      )
-      CustomHeaderAuth.apply(_request)
-      _context = execute_request(_request)
-      validate_response(_context)
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
         _context.response.raw_body.nil? ||
@@ -536,10 +569,12 @@ module Meraki
         array_serialization: Configuration.array_serialization
       )
       _query_url = APIHelper.clean_url _query_builder
+
       # Prepare headers.
       _headers = {
         'accept' => 'application/json'
       }
+
       # Prepare and execute HttpRequest.
       _request = @http_client.get(
         _query_url,
@@ -548,6 +583,7 @@ module Meraki
       CustomHeaderAuth.apply(_request)
       _context = execute_request(_request)
       validate_response(_context)
+
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
         _context.response.raw_body.nil? ||

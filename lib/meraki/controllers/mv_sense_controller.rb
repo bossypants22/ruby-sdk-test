@@ -16,6 +16,123 @@ module Meraki
       self.class.instance
     end
 
+    # Returns live state from camera of analytics zones
+    # @param [String] serial Required parameter: Example:
+    # @return Mixed response from the API call
+    def get_device_camera_analytics_live(serial)
+      # Validate required parameters.
+      validate_parameters(
+        'serial' => serial
+      )
+      # Prepare query url.
+      _path_url = '/devices/{serial}/camera/analytics/live'
+      _path_url = APIHelper.append_url_with_template_parameters(
+        _path_url,
+        'serial' => serial
+      )
+      _query_builder = Configuration.base_uri.dup
+      _query_builder << _path_url
+      _query_url = APIHelper.clean_url _query_builder
+
+      # Prepare headers.
+      _headers = {
+        'accept' => 'application/json'
+      }
+
+      # Prepare and execute HttpRequest.
+      _request = @http_client.get(
+        _query_url,
+        headers: _headers
+      )
+      CustomHeaderAuth.apply(_request)
+      _context = execute_request(_request)
+      validate_response(_context)
+
+      # Return appropriate response type.
+      decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
+        _context.response.raw_body.nil? ||
+        _context.response.raw_body.to_s.strip.empty?
+      decoded
+    end
+
+    # Returns most recent record for analytics zones
+    # @param [String] serial Required parameter: Example:
+    # @return Mixed response from the API call
+    def get_device_camera_analytics_recent(serial)
+      # Validate required parameters.
+      validate_parameters(
+        'serial' => serial
+      )
+      # Prepare query url.
+      _path_url = '/devices/{serial}/camera/analytics/recent'
+      _path_url = APIHelper.append_url_with_template_parameters(
+        _path_url,
+        'serial' => serial
+      )
+      _query_builder = Configuration.base_uri.dup
+      _query_builder << _path_url
+      _query_url = APIHelper.clean_url _query_builder
+
+      # Prepare headers.
+      _headers = {
+        'accept' => 'application/json'
+      }
+
+      # Prepare and execute HttpRequest.
+      _request = @http_client.get(
+        _query_url,
+        headers: _headers
+      )
+      CustomHeaderAuth.apply(_request)
+      _context = execute_request(_request)
+      validate_response(_context)
+
+      # Return appropriate response type.
+      decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
+        _context.response.raw_body.nil? ||
+        _context.response.raw_body.to_s.strip.empty?
+      decoded
+    end
+
+    # Returns all configured analytic zones for this camera
+    # @param [String] serial Required parameter: Example:
+    # @return Mixed response from the API call
+    def get_device_camera_analytics_zones(serial)
+      # Validate required parameters.
+      validate_parameters(
+        'serial' => serial
+      )
+      # Prepare query url.
+      _path_url = '/devices/{serial}/camera/analytics/zones'
+      _path_url = APIHelper.append_url_with_template_parameters(
+        _path_url,
+        'serial' => serial
+      )
+      _query_builder = Configuration.base_uri.dup
+      _query_builder << _path_url
+      _query_url = APIHelper.clean_url _query_builder
+
+      # Prepare headers.
+      _headers = {
+        'accept' => 'application/json'
+      }
+
+      # Prepare and execute HttpRequest.
+      _request = @http_client.get(
+        _query_url,
+        headers: _headers
+      )
+      CustomHeaderAuth.apply(_request)
+      _context = execute_request(_request)
+      validate_response(_context)
+
+      # Return appropriate response type.
+      decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
+        _context.response.raw_body.nil? ||
+        _context.response.raw_body.to_s.strip.empty?
+      decoded
+    end
+
     # Return historical records for analytic zones
     # @param [String] serial Required parameter: Example:
     # @param [String] zone_id Required parameter: Example:
@@ -57,82 +174,12 @@ module Meraki
         array_serialization: Configuration.array_serialization
       )
       _query_url = APIHelper.clean_url _query_builder
-      # Prepare headers.
-      _headers = {
-        'accept' => 'application/json'
-      }
-      # Prepare and execute HttpRequest.
-      _request = @http_client.get(
-        _query_url,
-        headers: _headers
-      )
-      CustomHeaderAuth.apply(_request)
-      _context = execute_request(_request)
-      validate_response(_context)
-      # Return appropriate response type.
-      decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
-        _context.response.raw_body.nil? ||
-        _context.response.raw_body.to_s.strip.empty?
-      decoded
-    end
 
-    # Returns all configured analytic zones for this camera
-    # @param [String] serial Required parameter: Example:
-    # @return Mixed response from the API call
-    def get_device_camera_analytics_zones(serial)
-      # Validate required parameters.
-      validate_parameters(
-        'serial' => serial
-      )
-      # Prepare query url.
-      _path_url = '/devices/{serial}/camera/analytics/zones'
-      _path_url = APIHelper.append_url_with_template_parameters(
-        _path_url,
-        'serial' => serial
-      )
-      _query_builder = Configuration.base_uri.dup
-      _query_builder << _path_url
-      _query_url = APIHelper.clean_url _query_builder
       # Prepare headers.
       _headers = {
         'accept' => 'application/json'
       }
-      # Prepare and execute HttpRequest.
-      _request = @http_client.get(
-        _query_url,
-        headers: _headers
-      )
-      CustomHeaderAuth.apply(_request)
-      _context = execute_request(_request)
-      validate_response(_context)
-      # Return appropriate response type.
-      decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
-        _context.response.raw_body.nil? ||
-        _context.response.raw_body.to_s.strip.empty?
-      decoded
-    end
 
-    # Returns most recent record for analytics zones
-    # @param [String] serial Required parameter: Example:
-    # @return Mixed response from the API call
-    def get_device_camera_analytics_recent(serial)
-      # Validate required parameters.
-      validate_parameters(
-        'serial' => serial
-      )
-      # Prepare query url.
-      _path_url = '/devices/{serial}/camera/analytics/recent'
-      _path_url = APIHelper.append_url_with_template_parameters(
-        _path_url,
-        'serial' => serial
-      )
-      _query_builder = Configuration.base_uri.dup
-      _query_builder << _path_url
-      _query_url = APIHelper.clean_url _query_builder
-      # Prepare headers.
-      _headers = {
-        'accept' => 'application/json'
-      }
       # Prepare and execute HttpRequest.
       _request = @http_client.get(
         _query_url,
@@ -141,6 +188,7 @@ module Meraki
       CustomHeaderAuth.apply(_request)
       _context = execute_request(_request)
       validate_response(_context)
+
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
         _context.response.raw_body.nil? ||
@@ -182,46 +230,12 @@ module Meraki
         array_serialization: Configuration.array_serialization
       )
       _query_url = APIHelper.clean_url _query_builder
-      # Prepare headers.
-      _headers = {
-        'accept' => 'application/json'
-      }
-      # Prepare and execute HttpRequest.
-      _request = @http_client.get(
-        _query_url,
-        headers: _headers
-      )
-      CustomHeaderAuth.apply(_request)
-      _context = execute_request(_request)
-      validate_response(_context)
-      # Return appropriate response type.
-      decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
-        _context.response.raw_body.nil? ||
-        _context.response.raw_body.to_s.strip.empty?
-      decoded
-    end
 
-    # Returns live state from camera of analytics zones
-    # @param [String] serial Required parameter: Example:
-    # @return Mixed response from the API call
-    def get_device_camera_analytics_live(serial)
-      # Validate required parameters.
-      validate_parameters(
-        'serial' => serial
-      )
-      # Prepare query url.
-      _path_url = '/devices/{serial}/camera/analytics/live'
-      _path_url = APIHelper.append_url_with_template_parameters(
-        _path_url,
-        'serial' => serial
-      )
-      _query_builder = Configuration.base_uri.dup
-      _query_builder << _path_url
-      _query_url = APIHelper.clean_url _query_builder
       # Prepare headers.
       _headers = {
         'accept' => 'application/json'
       }
+
       # Prepare and execute HttpRequest.
       _request = @http_client.get(
         _query_url,
@@ -230,6 +244,7 @@ module Meraki
       CustomHeaderAuth.apply(_request)
       _context = execute_request(_request)
       validate_response(_context)
+
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
         _context.response.raw_body.nil? ||

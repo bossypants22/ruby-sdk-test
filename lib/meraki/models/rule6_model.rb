@@ -65,7 +65,8 @@ module Meraki
                    allowed_inbound = nil,
                    protocol = nil,
                    destination_ports = nil,
-                   allowed_ips = nil)
+                   allowed_ips = nil,
+                   additional_properties = {})
       @name = name
       @public_ip = public_ip
       @lan_ip = lan_ip
@@ -74,6 +75,11 @@ module Meraki
       @protocol = protocol
       @destination_ports = destination_ports
       @allowed_ips = allowed_ips
+
+      # Add additional model properties to the instance.
+      additional_properties.each do |_name, _value|
+        instance_variable_set("@#{_name}", _value)
+      end
     end
 
     # Creates an instance of the object from a hash.
@@ -90,6 +96,9 @@ module Meraki
       destination_ports = hash['destinationPorts']
       allowed_ips = hash['allowedIps']
 
+      # Clean out expected properties from Hash.
+      names.each_value { |k| hash.delete(k) }
+
       # Create object from extracted values.
       Rule6Model.new(name,
                      public_ip,
@@ -98,7 +107,8 @@ module Meraki
                      allowed_inbound,
                      protocol,
                      destination_ports,
-                     allowed_ips)
+                     allowed_ips,
+                     hash)
     end
   end
 end

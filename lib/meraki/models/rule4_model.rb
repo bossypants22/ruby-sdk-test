@@ -6,38 +6,49 @@
 module Meraki
   # Rule4Model Model.
   class Rule4Model < BaseModel
-    # 'Deny' traffic specified by this rule
-    # @return [Policy2Enum]
+    # Description of the rule (optional)
+    # @return [String]
+    attr_accessor :comment
+
+    # 'allow' or 'deny' traffic specified by this rule
+    # @return [String]
     attr_accessor :policy
 
-    # Type of the L7 rule. One of: 'application', 'applicationCategory', 'host',
-    # 'port', 'ipRange'
-    # @return [Type4Enum]
-    attr_accessor :type
-
-    # The 'value' of what you want to block. Format of 'value' varies depending
-    # on type of the rule. See sample request. The application categories and
-    # application ids can be retrieved from the the 'MX L7 application
-    # categories' endpoint. The countries follow the two-letter ISO 3166-1
-    # alpha-2 format.
+    # The type of protocol (must be 'tcp', 'udp', 'icmp' or 'any')
     # @return [String]
-    attr_accessor :value
+    attr_accessor :protocol
+
+    # Comma-separated list of destination port(s) (integer in the range
+    # 1-65535), or 'any'
+    # @return [String]
+    attr_accessor :dest_port
+
+    # Comma-separated list of destination IP address(es) (in IP or CIDR
+    # notation), fully-qualified domain names (FQDN) or 'any'
+    # @return [String]
+    attr_accessor :dest_cidr
 
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
+      @_hash['comment'] = 'comment'
       @_hash['policy'] = 'policy'
-      @_hash['type'] = 'type'
-      @_hash['value'] = 'value'
+      @_hash['protocol'] = 'protocol'
+      @_hash['dest_port'] = 'destPort'
+      @_hash['dest_cidr'] = 'destCidr'
       @_hash
     end
 
     def initialize(policy = nil,
-                   type = nil,
-                   value = nil)
+                   protocol = nil,
+                   dest_cidr = nil,
+                   comment = nil,
+                   dest_port = nil)
+      @comment = comment
       @policy = policy
-      @type = type
-      @value = value
+      @protocol = protocol
+      @dest_port = dest_port
+      @dest_cidr = dest_cidr
     end
 
     # Creates an instance of the object from a hash.
@@ -46,13 +57,17 @@ module Meraki
 
       # Extract variables from the hash.
       policy = hash['policy']
-      type = hash['type']
-      value = hash['value']
+      protocol = hash['protocol']
+      dest_cidr = hash['destCidr']
+      comment = hash['comment']
+      dest_port = hash['destPort']
 
       # Create object from extracted values.
       Rule4Model.new(policy,
-                     type,
-                     value)
+                     protocol,
+                     dest_cidr,
+                     comment,
+                     dest_port)
     end
   end
 end

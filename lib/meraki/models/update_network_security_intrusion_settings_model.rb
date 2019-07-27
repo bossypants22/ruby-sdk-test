@@ -18,8 +18,7 @@ module Meraki
     attr_accessor :ids_rulesets
 
     # Set the included/excluded networks from the intrusion engine (optional -
-    # omitting will leave current config unchanged). This is available only in
-    # 'passthrough' mode
+    # omitting will leave current config unchanged)
     # @return [ProtectedNetworksModel]
     attr_accessor :protected_networks
 

@@ -7,12 +7,12 @@ module Meraki
   # L7FirewallRuleModel Model.
   class L7FirewallRuleModel < BaseModel
     # The policy applied to matching traffic. Must be 'deny'.
-    # @return [PolicyEnum]
+    # @return [Policy1Enum]
     attr_accessor :policy
 
     # Type of the L7 Rule. Must be 'application', 'applicationCategory', 'host',
     # 'port' or 'ipRange'
-    # @return [Type1Enum]
+    # @return [Type2Enum]
     attr_accessor :type
 
     # The 'value' of what you want to block. If 'type' is 'host', 'port' or
