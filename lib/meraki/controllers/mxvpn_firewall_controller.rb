@@ -35,13 +35,11 @@ module Meraki
       _query_builder = Configuration.base_uri.dup
       _query_builder << _path_url
       _query_url = APIHelper.clean_url _query_builder
-
       # Prepare headers.
       _headers = {
         'accept' => 'application/json',
         'content-type' => 'application/json; charset=utf-8'
       }
-
       # Prepare and execute HttpRequest.
       _request = @http_client.put(
         _query_url,
@@ -51,7 +49,6 @@ module Meraki
       CustomHeaderAuth.apply(_request)
       _context = execute_request(_request)
       validate_response(_context)
-
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
         _context.response.raw_body.nil? ||
@@ -76,12 +73,10 @@ module Meraki
       _query_builder = Configuration.base_uri.dup
       _query_builder << _path_url
       _query_url = APIHelper.clean_url _query_builder
-
       # Prepare headers.
       _headers = {
         'accept' => 'application/json'
       }
-
       # Prepare and execute HttpRequest.
       _request = @http_client.get(
         _query_url,
@@ -90,7 +85,6 @@ module Meraki
       CustomHeaderAuth.apply(_request)
       _context = execute_request(_request)
       validate_response(_context)
-
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
         _context.response.raw_body.nil? ||
