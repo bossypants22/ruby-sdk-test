@@ -16,40 +16,38 @@ module Meraki
       self.class.instance
     end
 
-    # Enable/Disable VLANs for the given network
+    # List the VLANs for an MX network
     # @param [String] network_id Required parameter: Example:
-    # @param [UpdateNetworkVlansEnabledStateModel]
-    # update_network_vlans_enabled_state Required parameter: Example:
     # @return Mixed response from the API call
-    def update_network_vlans_enabled_state(options = {})
+    def get_network_vlans(network_id)
       # Validate required parameters.
       validate_parameters(
-        'network_id' => options['network_id'],
-        'update_network_vlans_enabled_state' => options['update_network_vlans_enabled_state']
+        'network_id' => network_id
       )
       # Prepare query url.
-      _path_url = '/networks/{networkId}/vlansEnabledState'
+      _path_url = '/networks/{networkId}/vlans'
       _path_url = APIHelper.append_url_with_template_parameters(
         _path_url,
-        'networkId' => options['network_id']
+        'networkId' => network_id
       )
       _query_builder = Configuration.base_uri.dup
       _query_builder << _path_url
       _query_url = APIHelper.clean_url _query_builder
+
       # Prepare headers.
       _headers = {
-        'accept' => 'application/json',
-        'content-type' => 'application/json; charset=utf-8'
+        'accept' => 'application/json'
       }
+
       # Prepare and execute HttpRequest.
-      _request = @http_client.put(
+      _request = @http_client.get(
         _query_url,
-        headers: _headers,
-        parameters: options['update_network_vlans_enabled_state'].to_json
+        headers: _headers
       )
       CustomHeaderAuth.apply(_request)
       _context = execute_request(_request)
       validate_response(_context)
+
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
         _context.response.raw_body.nil? ||
@@ -74,10 +72,12 @@ module Meraki
       _query_builder = Configuration.base_uri.dup
       _query_builder << _path_url
       _query_url = APIHelper.clean_url _query_builder
+
       # Prepare headers.
       _headers = {
         'accept' => 'application/json'
       }
+
       # Prepare and execute HttpRequest.
       _request = @http_client.get(
         _query_url,
@@ -86,6 +86,7 @@ module Meraki
       CustomHeaderAuth.apply(_request)
       _context = execute_request(_request)
       validate_response(_context)
+
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
         _context.response.raw_body.nil? ||
@@ -113,6 +114,7 @@ module Meraki
       _query_builder = Configuration.base_uri.dup
       _query_builder << _path_url
       _query_url = APIHelper.clean_url _query_builder
+
       # Prepare and execute HttpRequest.
       _request = @http_client.delete(
         _query_url
@@ -142,11 +144,13 @@ module Meraki
       _query_builder = Configuration.base_uri.dup
       _query_builder << _path_url
       _query_url = APIHelper.clean_url _query_builder
+
       # Prepare headers.
       _headers = {
         'accept' => 'application/json',
         'content-type' => 'application/json; charset=utf-8'
       }
+
       # Prepare and execute HttpRequest.
       _request = @http_client.post(
         _query_url,
@@ -156,6 +160,7 @@ module Meraki
       CustomHeaderAuth.apply(_request)
       _context = execute_request(_request)
       validate_response(_context)
+
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
         _context.response.raw_body.nil? ||
@@ -163,35 +168,43 @@ module Meraki
       decoded
     end
 
-    # List the VLANs for an MX network
+    # Enable/Disable VLANs for the given network
     # @param [String] network_id Required parameter: Example:
+    # @param [UpdateNetworkVlansEnabledStateModel]
+    # update_network_vlans_enabled_state Required parameter: Example:
     # @return Mixed response from the API call
-    def get_network_vlans(network_id)
+    def update_network_vlans_enabled_state(options = {})
       # Validate required parameters.
       validate_parameters(
-        'network_id' => network_id
+        'network_id' => options['network_id'],
+        'update_network_vlans_enabled_state' => options['update_network_vlans_enabled_state']
       )
       # Prepare query url.
-      _path_url = '/networks/{networkId}/vlans'
+      _path_url = '/networks/{networkId}/vlansEnabledState'
       _path_url = APIHelper.append_url_with_template_parameters(
         _path_url,
-        'networkId' => network_id
+        'networkId' => options['network_id']
       )
       _query_builder = Configuration.base_uri.dup
       _query_builder << _path_url
       _query_url = APIHelper.clean_url _query_builder
+
       # Prepare headers.
       _headers = {
-        'accept' => 'application/json'
+        'accept' => 'application/json',
+        'content-type' => 'application/json; charset=utf-8'
       }
+
       # Prepare and execute HttpRequest.
-      _request = @http_client.get(
+      _request = @http_client.put(
         _query_url,
-        headers: _headers
+        headers: _headers,
+        parameters: options['update_network_vlans_enabled_state'].to_json
       )
       CustomHeaderAuth.apply(_request)
       _context = execute_request(_request)
       validate_response(_context)
+
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
         _context.response.raw_body.nil? ||
@@ -221,11 +234,13 @@ module Meraki
       _query_builder = Configuration.base_uri.dup
       _query_builder << _path_url
       _query_url = APIHelper.clean_url _query_builder
+
       # Prepare headers.
       _headers = {
         'accept' => 'application/json',
         'content-type' => 'application/json; charset=utf-8'
       }
+
       # Prepare and execute HttpRequest.
       _request = @http_client.put(
         _query_url,
@@ -235,6 +250,7 @@ module Meraki
       CustomHeaderAuth.apply(_request)
       _context = execute_request(_request)
       validate_response(_context)
+
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
         _context.response.raw_body.nil? ||
@@ -262,10 +278,12 @@ module Meraki
       _query_builder = Configuration.base_uri.dup
       _query_builder << _path_url
       _query_url = APIHelper.clean_url _query_builder
+
       # Prepare headers.
       _headers = {
         'accept' => 'application/json'
       }
+
       # Prepare and execute HttpRequest.
       _request = @http_client.get(
         _query_url,
@@ -274,6 +292,7 @@ module Meraki
       CustomHeaderAuth.apply(_request)
       _context = execute_request(_request)
       validate_response(_context)
+
       # Return appropriate response type.
       decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
         _context.response.raw_body.nil? ||

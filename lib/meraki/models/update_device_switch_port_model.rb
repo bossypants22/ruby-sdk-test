@@ -15,7 +15,7 @@ module Meraki
     attr_accessor :tags
 
     # The status of the switch port
-    # @return [Boolean]
+    # @return [String]
     attr_accessor :enabled
 
     # The type of the switch port ("access" or "trunk")
@@ -23,11 +23,11 @@ module Meraki
     attr_accessor :type
 
     # The VLAN of the switch port
-    # @return [Integer]
+    # @return [String]
     attr_accessor :vlan
 
     # The voice VLAN of the switch port. Only applicable to access ports.
-    # @return [Integer]
+    # @return [String]
     attr_accessor :voice_vlan
 
     # The VLANs allowed on the switch port. Only applicable to trunk ports.
@@ -35,15 +35,15 @@ module Meraki
     attr_accessor :allowed_vlans
 
     # The PoE status of the switch port
-    # @return [Boolean]
+    # @return [String]
     attr_accessor :poe_enabled
 
     # The isolation status of the switch port
-    # @return [Boolean]
+    # @return [String]
     attr_accessor :isolation_enabled
 
     # The rapid spanning tree protocol status
-    # @return [Boolean]
+    # @return [String]
     attr_accessor :rstp_enabled
 
     # The state of the STP guard ("disabled", "Root guard", "BPDU guard", "Loop
@@ -53,16 +53,12 @@ module Meraki
 
     # The number of the access policy of the switch port. Only applicable to
     # access ports.
-    # @return [Integer]
+    # @return [String]
     attr_accessor :access_policy_number
 
     # The link speed for the switch port
     # @return [String]
     attr_accessor :link_negotiation
-
-    # The ID of the port schedule. A value of null will clear the port schedule.
-    # @return [String]
-    attr_accessor :port_schedule_id
 
     # A mapping from model property names to API property names.
     def self.names
@@ -80,7 +76,6 @@ module Meraki
       @_hash['stp_guard'] = 'stpGuard'
       @_hash['access_policy_number'] = 'accessPolicyNumber'
       @_hash['link_negotiation'] = 'linkNegotiation'
-      @_hash['port_schedule_id'] = 'portScheduleId'
       @_hash
     end
 
@@ -96,8 +91,7 @@ module Meraki
                    rstp_enabled = nil,
                    stp_guard = nil,
                    access_policy_number = nil,
-                   link_negotiation = nil,
-                   port_schedule_id = nil)
+                   link_negotiation = nil)
       @name = name
       @tags = tags
       @enabled = enabled
@@ -111,7 +105,6 @@ module Meraki
       @stp_guard = stp_guard
       @access_policy_number = access_policy_number
       @link_negotiation = link_negotiation
-      @port_schedule_id = port_schedule_id
     end
 
     # Creates an instance of the object from a hash.
@@ -132,7 +125,6 @@ module Meraki
       stp_guard = hash['stpGuard']
       access_policy_number = hash['accessPolicyNumber']
       link_negotiation = hash['linkNegotiation']
-      port_schedule_id = hash['portScheduleId']
 
       # Create object from extracted values.
       UpdateDeviceSwitchPortModel.new(name,
@@ -147,8 +139,7 @@ module Meraki
                                       rstp_enabled,
                                       stp_guard,
                                       access_policy_number,
-                                      link_negotiation,
-                                      port_schedule_id)
+                                      link_negotiation)
     end
   end
 end

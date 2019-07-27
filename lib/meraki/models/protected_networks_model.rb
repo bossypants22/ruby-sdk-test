@@ -5,8 +5,7 @@
 
 module Meraki
   # Set the included/excluded networks from the intrusion engine (optional -
-  # omitting will leave current config unchanged). This is available only in
-  # 'passthrough' mode
+  # omitting will leave current config unchanged)
   class ProtectedNetworksModel < BaseModel
     # true/false whether to use special IPv4 addresses:
     # https://tools.ietf.org/html/rfc5735 (required). Default value is true if

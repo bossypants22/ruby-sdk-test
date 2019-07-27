@@ -4,18 +4,17 @@
 # ( https://apimatic.io ).
 
 module Meraki
-  # How URL patterns are applied. Can be 'network default', 'append' or
-  # 'override'.
+  # How VLAN tagging is applied. Can be 'network default', 'ignore' or 'custom'.
   class Settings2Enum
     SETTINGS2_ENUM = [
       # TODO: Write general description for ENUM_NETWORK_DEFAULT
       ENUM_NETWORK_DEFAULT = 'network default'.freeze,
 
-      # TODO: Write general description for APPEND
-      APPEND = 'append'.freeze,
+      # TODO: Write general description for IGNORE
+      IGNORE = 'ignore'.freeze,
 
-      # TODO: Write general description for OVERRIDE
-      OVERRIDE = 'override'.freeze
+      # TODO: Write general description for CUSTOM
+      CUSTOM = 'custom'.freeze
     ].freeze
   end
 end
