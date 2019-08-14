@@ -27,7 +27,7 @@ Alternatively, you can build and install the gem manually:
 
   1. From terminal/cmd navigate to the root directory of the SDK.
   2. Run the build command: `gem build meraki.gemspec`
-  3. Run the install command: `gem install ./meraki-0.11.0.gem`
+  3. Run the install command: `gem install ./meraki-0.2.0.gem`
 
 Note: You will need to have internet access for this step.
 
@@ -41,7 +41,7 @@ After having installed the gem, you can easily use the SDK following these steps
 require 'meraki'
 
 api_client = Meraki::MerakiClient.new
-controller = api_client.api_usage_controller
-response = controller.get_organization_api_requests(<required parameters if any>)
+controller = api_client.organizations_controller
+response = controller.get_organizations(<required parameters if any>)
 p response
 ```
