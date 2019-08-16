@@ -11,8 +11,8 @@ module Meraki
     # @return [Boolean]
     attr_accessor :confirmed
 
-    # Set to true to force the batch to run synchronous. There can be at most 20
-    # actions in synchronous batch.
+    # Force the batch to run synchronous. There can be at most 20 actions in
+    # synchronous batch.
     # @return [Boolean]
     attr_accessor :synchronous
 
