@@ -8,7 +8,7 @@ module Meraki
   class FirewallAndTrafficShapingModel < BaseModel
     # How firewall and traffic shaping rules are enforced. Can be 'network
     # default', 'ignore' or 'custom'.
-    # @return [Settings1Enum]
+    # @return [Settings6Enum]
     attr_accessor :settings
 
     # An array of traffic shaping rules. Rules are applied in the order that

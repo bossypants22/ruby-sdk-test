@@ -6,9 +6,11 @@
 module Meraki
   # CreateNetworkPiiRequestModel Model.
   class CreateNetworkPiiRequestModel < BaseModel
-    # One of "delete" or "restrict processing"
-    # @return [Type5Enum]
-    attr_accessor :type
+    # The sm_device_id of a Systems Manager device. The only way to "restrict
+    # processing" or "delete" a Systems Manager device. Must include "device" in
+    # the dataset for a "delete" request to destroy the device.
+    # @return [String]
+    attr_accessor :sm_device_id
 
     # The datasets related to the provided key that should be deleted. Only
     # applies to "delete" requests. The value "all" will be expanded to all
@@ -19,9 +21,9 @@ module Meraki
     # @return [List of String]
     attr_accessor :datasets
 
-    # The username of a network log in. Only applies to "delete" requests.
-    # @return [String]
-    attr_accessor :username
+    # One of "delete" or "restrict processing"
+    # @return [Type7Enum]
+    attr_accessor :type
 
     # The email of a network user account. Only applies to "delete" requests.
     # @return [String]
@@ -32,45 +34,43 @@ module Meraki
     # @return [String]
     attr_accessor :mac
 
-    # The sm_device_id of a Systems Manager device. The only way to "restrict
-    # processing" or "delete" a Systems Manager device. Must include "device" in
-    # the dataset for a "delete" request to destroy the device.
-    # @return [String]
-    attr_accessor :sm_device_id
-
     # The sm_user_id of a Systems Manager user. The only way to "restrict
     # processing" or "delete" a Systems Manager user. Must include "user" in the
     # dataset for a "delete" request to destroy the user.
     # @return [String]
     attr_accessor :sm_user_id
 
+    # The username of a network log in. Only applies to "delete" requests.
+    # @return [String]
+    attr_accessor :username
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['type'] = 'type'
+      @_hash['sm_device_id'] = 'smDeviceId'
       @_hash['datasets'] = 'datasets'
-      @_hash['username'] = 'username'
+      @_hash['type'] = 'type'
       @_hash['email'] = 'email'
       @_hash['mac'] = 'mac'
-      @_hash['sm_device_id'] = 'smDeviceId'
       @_hash['sm_user_id'] = 'smUserId'
+      @_hash['username'] = 'username'
       @_hash
     end
 
-    def initialize(type = nil,
+    def initialize(sm_device_id = nil,
                    datasets = nil,
-                   username = nil,
+                   type = nil,
                    email = nil,
                    mac = nil,
-                   sm_device_id = nil,
-                   sm_user_id = nil)
-      @type = type
+                   sm_user_id = nil,
+                   username = nil)
+      @sm_device_id = sm_device_id
       @datasets = datasets
-      @username = username
+      @type = type
       @email = email
       @mac = mac
-      @sm_device_id = sm_device_id
       @sm_user_id = sm_user_id
+      @username = username
     end
 
     # Creates an instance of the object from a hash.
@@ -78,22 +78,22 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
-      type = hash['type']
+      sm_device_id = hash['smDeviceId']
       datasets = hash['datasets']
-      username = hash['username']
+      type = hash['type']
       email = hash['email']
       mac = hash['mac']
-      sm_device_id = hash['smDeviceId']
       sm_user_id = hash['smUserId']
+      username = hash['username']
 
       # Create object from extracted values.
-      CreateNetworkPiiRequestModel.new(type,
+      CreateNetworkPiiRequestModel.new(sm_device_id,
                                        datasets,
-                                       username,
+                                       type,
                                        email,
                                        mac,
-                                       sm_device_id,
-                                       sm_user_id)
+                                       sm_user_id,
+                                       username)
     end
   end
 end

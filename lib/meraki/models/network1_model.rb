@@ -4,28 +4,28 @@
 # ( https://apimatic.io ).
 
 module Meraki
-  # TagModel Model.
-  class TagModel < BaseModel
-    # The privilege of the SAML administrator on the tag
+  # Network1Model Model.
+  class Network1Model < BaseModel
+    # The privilege of the dashboard administrator on the network
     # @return [String]
     attr_accessor :access
 
-    # The name of the tag
+    # The network ID
     # @return [String]
-    attr_accessor :tag
+    attr_accessor :id
 
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
       @_hash['access'] = 'access'
-      @_hash['tag'] = 'tag'
+      @_hash['id'] = 'id'
       @_hash
     end
 
     def initialize(access = nil,
-                   tag = nil)
+                   id = nil)
       @access = access
-      @tag = tag
+      @id = id
     end
 
     # Creates an instance of the object from a hash.
@@ -34,11 +34,11 @@ module Meraki
 
       # Extract variables from the hash.
       access = hash['access']
-      tag = hash['tag']
+      id = hash['id']
 
       # Create object from extracted values.
-      TagModel.new(access,
-                   tag)
+      Network1Model.new(access,
+                        id)
     end
   end
 end

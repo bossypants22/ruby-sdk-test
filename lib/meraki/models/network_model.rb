@@ -6,26 +6,26 @@
 module Meraki
   # NetworkModel Model.
   class NetworkModel < BaseModel
+    # The privilege of the SAML administrator on the network
+    # @return [String]
+    attr_accessor :access
+
     # The network ID
     # @return [String]
     attr_accessor :id
 
-    # The privilege of the dashboard administrator on the network
-    # @return [String]
-    attr_accessor :access
-
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['id'] = 'id'
       @_hash['access'] = 'access'
+      @_hash['id'] = 'id'
       @_hash
     end
 
-    def initialize(id = nil,
-                   access = nil)
-      @id = id
+    def initialize(access = nil,
+                   id = nil)
       @access = access
+      @id = id
     end
 
     # Creates an instance of the object from a hash.
@@ -33,12 +33,12 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
-      id = hash['id']
       access = hash['access']
+      id = hash['id']
 
       # Create object from extracted values.
-      NetworkModel.new(id,
-                       access)
+      NetworkModel.new(access,
+                       id)
     end
   end
 end

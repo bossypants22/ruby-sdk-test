@@ -6,10 +6,6 @@
 module Meraki
   # ServerModel Model.
   class ServerModel < BaseModel
-    # The IP address of the syslog server
-    # @return [String]
-    attr_accessor :host
-
     # The port of the syslog server
     # @return [Integer]
     attr_accessor :port
@@ -20,21 +16,25 @@ module Meraki
     # @return [List of String]
     attr_accessor :roles
 
+    # The IP address of the syslog server
+    # @return [String]
+    attr_accessor :host
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['host'] = 'host'
       @_hash['port'] = 'port'
       @_hash['roles'] = 'roles'
+      @_hash['host'] = 'host'
       @_hash
     end
 
-    def initialize(host = nil,
-                   port = nil,
-                   roles = nil)
-      @host = host
+    def initialize(port = nil,
+                   roles = nil,
+                   host = nil)
       @port = port
       @roles = roles
+      @host = host
     end
 
     # Creates an instance of the object from a hash.
@@ -42,14 +42,14 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
-      host = hash['host']
       port = hash['port']
       roles = hash['roles']
+      host = hash['host']
 
       # Create object from extracted values.
-      ServerModel.new(host,
-                      port,
-                      roles)
+      ServerModel.new(port,
+                      roles,
+                      host)
     end
   end
 end

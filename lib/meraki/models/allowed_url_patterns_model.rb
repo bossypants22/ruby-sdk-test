@@ -8,7 +8,7 @@ module Meraki
   class AllowedUrlPatternsModel < BaseModel
     # How URL patterns are applied. Can be 'network default', 'append' or
     # 'override'.
-    # @return [Settings2Enum]
+    # @return [Settings1Enum]
     attr_accessor :settings
 
     # A whitelist of URL patterns to allow

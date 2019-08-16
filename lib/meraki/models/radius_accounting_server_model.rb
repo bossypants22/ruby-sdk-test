@@ -6,13 +6,13 @@
 module Meraki
   # RadiusAccountingServerModel Model.
   class RadiusAccountingServerModel < BaseModel
-    # IP address to which the APs will send RADIUS accounting messages
-    # @return [String]
-    attr_accessor :host
-
     # Port on the RADIUS server that is listening for accounting messages
     # @return [Integer]
     attr_accessor :port
+
+    # IP address to which the APs will send RADIUS accounting messages
+    # @return [String]
+    attr_accessor :host
 
     # Shared key used to authenticate messages between the APs and RADIUS server
     # @return [String]
@@ -21,17 +21,17 @@ module Meraki
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['host'] = 'host'
       @_hash['port'] = 'port'
+      @_hash['host'] = 'host'
       @_hash['secret'] = 'secret'
       @_hash
     end
 
-    def initialize(host = nil,
-                   port = nil,
+    def initialize(port = nil,
+                   host = nil,
                    secret = nil)
-      @host = host
       @port = port
+      @host = host
       @secret = secret
     end
 
@@ -40,13 +40,13 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
-      host = hash['host']
       port = hash['port']
+      host = hash['host']
       secret = hash['secret']
 
       # Create object from extracted values.
-      RadiusAccountingServerModel.new(host,
-                                      port,
+      RadiusAccountingServerModel.new(port,
+                                      host,
                                       secret)
     end
   end

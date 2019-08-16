@@ -4,8 +4,8 @@
 # ( https://apimatic.io ).
 
 module Meraki
-  # How Bonjour rules are applied. Can be 'network default', 'ignore' or
-  # 'custom'.
+  # How firewall and traffic shaping rules are enforced. Can be 'network
+  # default', 'ignore' or 'custom'.
   class Settings6Enum
     SETTINGS6_ENUM = [
       # TODO: Write general description for ENUM_NETWORK_DEFAULT

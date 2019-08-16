@@ -6,17 +6,17 @@
 module Meraki
   # CreateNetworkVlanModel Model.
   class CreateNetworkVlanModel < BaseModel
-    # The VLAN ID of the new VLAN (must be between 1 and 4094)
+    # The subnet of the VLAN
     # @return [String]
-    attr_accessor :id
+    attr_accessor :subnet
 
     # The name of the new VLAN
     # @return [String]
     attr_accessor :name
 
-    # The subnet of the VLAN
+    # The VLAN ID of the new VLAN (must be between 1 and 4094)
     # @return [String]
-    attr_accessor :subnet
+    attr_accessor :id
 
     # The local IP of the appliance on the VLAN
     # @return [String]
@@ -25,20 +25,20 @@ module Meraki
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['id'] = 'id'
-      @_hash['name'] = 'name'
       @_hash['subnet'] = 'subnet'
+      @_hash['name'] = 'name'
+      @_hash['id'] = 'id'
       @_hash['appliance_ip'] = 'applianceIp'
       @_hash
     end
 
-    def initialize(id = nil,
+    def initialize(subnet = nil,
                    name = nil,
-                   subnet = nil,
+                   id = nil,
                    appliance_ip = nil)
-      @id = id
-      @name = name
       @subnet = subnet
+      @name = name
+      @id = id
       @appliance_ip = appliance_ip
     end
 
@@ -47,15 +47,15 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
-      id = hash['id']
-      name = hash['name']
       subnet = hash['subnet']
+      name = hash['name']
+      id = hash['id']
       appliance_ip = hash['applianceIp']
 
       # Create object from extracted values.
-      CreateNetworkVlanModel.new(id,
+      CreateNetworkVlanModel.new(subnet,
                                  name,
-                                 subnet,
+                                 id,
                                  appliance_ip)
     end
   end

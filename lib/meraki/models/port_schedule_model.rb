@@ -9,9 +9,13 @@ module Meraki
   # configured.     Any unspecified day in the schedule is added as a default
   # schedule configuration of the day.
   class PortScheduleModel < BaseModel
-    # The schedule object for Monday.
-    # @return [MondayModel]
-    attr_accessor :monday
+    # The schedule object for Sunday.
+    # @return [SundayModel]
+    attr_accessor :sunday
+
+    # The schedule object for Saturday.
+    # @return [SaturdayModel]
+    attr_accessor :saturday
 
     # The schedule object for Tuesday.
     # @return [TuesdayModel]
@@ -29,41 +33,37 @@ module Meraki
     # @return [FridayModel]
     attr_accessor :friday
 
-    # The schedule object for Saturday.
-    # @return [SaturdayModel]
-    attr_accessor :saturday
-
-    # The schedule object for Sunday.
-    # @return [SundayModel]
-    attr_accessor :sunday
+    # The schedule object for Monday.
+    # @return [MondayModel]
+    attr_accessor :monday
 
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['monday'] = 'monday'
+      @_hash['sunday'] = 'sunday'
+      @_hash['saturday'] = 'saturday'
       @_hash['tuesday'] = 'tuesday'
       @_hash['wednesday'] = 'wednesday'
       @_hash['thursday'] = 'thursday'
       @_hash['friday'] = 'friday'
-      @_hash['saturday'] = 'saturday'
-      @_hash['sunday'] = 'sunday'
+      @_hash['monday'] = 'monday'
       @_hash
     end
 
-    def initialize(monday = nil,
+    def initialize(sunday = nil,
+                   saturday = nil,
                    tuesday = nil,
                    wednesday = nil,
                    thursday = nil,
                    friday = nil,
-                   saturday = nil,
-                   sunday = nil)
-      @monday = monday
+                   monday = nil)
+      @sunday = sunday
+      @saturday = saturday
       @tuesday = tuesday
       @wednesday = wednesday
       @thursday = thursday
       @friday = friday
-      @saturday = saturday
-      @sunday = sunday
+      @monday = monday
     end
 
     # Creates an instance of the object from a hash.
@@ -71,23 +71,23 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
-      monday = MondayModel.from_hash(hash['monday']) if hash['monday']
+      sunday = SundayModel.from_hash(hash['sunday']) if hash['sunday']
+      saturday = SaturdayModel.from_hash(hash['saturday']) if hash['saturday']
       tuesday = TuesdayModel.from_hash(hash['tuesday']) if hash['tuesday']
       wednesday = WednesdayModel.from_hash(hash['wednesday']) if
         hash['wednesday']
       thursday = ThursdayModel.from_hash(hash['thursday']) if hash['thursday']
       friday = FridayModel.from_hash(hash['friday']) if hash['friday']
-      saturday = SaturdayModel.from_hash(hash['saturday']) if hash['saturday']
-      sunday = SundayModel.from_hash(hash['sunday']) if hash['sunday']
+      monday = MondayModel.from_hash(hash['monday']) if hash['monday']
 
       # Create object from extracted values.
-      PortScheduleModel.new(monday,
+      PortScheduleModel.new(sunday,
+                            saturday,
                             tuesday,
                             wednesday,
                             thursday,
                             friday,
-                            saturday,
-                            sunday)
+                            monday)
     end
   end
 end

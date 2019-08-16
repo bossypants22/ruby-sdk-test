@@ -4,8 +4,7 @@
 # ( https://apimatic.io ).
 
 module Meraki
-  # How bandwidth limits are enforced. Can be 'network default', 'ignore' or
-  # 'custom'.
+  # How VLAN tagging is applied. Can be 'network default', 'ignore' or 'custom'.
   class SettingsEnum
     SETTINGS_ENUM = [
       # TODO: Write general description for ENUM_NETWORK_DEFAULT

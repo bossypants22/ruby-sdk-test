@@ -8,7 +8,7 @@ module Meraki
   class BandwidthModel < BaseModel
     # How bandwidth limits are enforced. Can be 'network default', 'ignore' or
     # 'custom'.
-    # @return [SettingsEnum]
+    # @return [Settings5Enum]
     attr_accessor :settings
 
     # The bandwidth limits object, specifying upload and download speed for

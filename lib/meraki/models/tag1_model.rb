@@ -4,9 +4,9 @@
 # ( https://apimatic.io ).
 
 module Meraki
-  # TagModel Model.
-  class TagModel < BaseModel
-    # The privilege of the SAML administrator on the tag
+  # Tag1Model Model.
+  class Tag1Model < BaseModel
+    # The privilege of the dashboard administrator on the tag
     # @return [String]
     attr_accessor :access
 
@@ -37,8 +37,8 @@ module Meraki
       tag = hash['tag']
 
       # Create object from extracted values.
-      TagModel.new(access,
-                   tag)
+      Tag1Model.new(access,
+                    tag)
     end
   end
 end

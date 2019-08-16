@@ -10,30 +10,30 @@ module Meraki
     # @return [String]
     attr_accessor :name
 
-    # The URL of the HTTP server
-    # @return [String]
-    attr_accessor :url
-
     # A shared secret that will be included in POSTs sent to the HTTP server.
     # This secret can be used to verify that the request was sent by Meraki.
     # @return [String]
     attr_accessor :shared_secret
 
+    # The URL of the HTTP server
+    # @return [String]
+    attr_accessor :url
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
       @_hash['name'] = 'name'
-      @_hash['url'] = 'url'
       @_hash['shared_secret'] = 'sharedSecret'
+      @_hash['url'] = 'url'
       @_hash
     end
 
     def initialize(name = nil,
-                   url = nil,
-                   shared_secret = nil)
+                   shared_secret = nil,
+                   url = nil)
       @name = name
-      @url = url
       @shared_secret = shared_secret
+      @url = url
     end
 
     # Creates an instance of the object from a hash.
@@ -42,13 +42,13 @@ module Meraki
 
       # Extract variables from the hash.
       name = hash['name']
-      url = hash['url']
       shared_secret = hash['sharedSecret']
+      url = hash['url']
 
       # Create object from extracted values.
       UpdateNetworkHttpServerModel.new(name,
-                                       url,
-                                       shared_secret)
+                                       shared_secret,
+                                       url)
     end
   end
 end

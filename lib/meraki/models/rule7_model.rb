@@ -6,64 +6,73 @@
 module Meraki
   # Rule7Model Model.
   class Rule7Model < BaseModel
-    # A descriptive name for the rule
+    # Comma-separated list of source IP address(es) (in IP or CIDR notation), or
+    # 'any' (note: FQDN not supported for source addresses)
     # @return [String]
-    attr_accessor :name
+    attr_accessor :src_cidr
 
-    # The IP address of the server or device that hosts the internal resource
-    # that you wish to make available on the WAN
-    # @return [String]
-    attr_accessor :lan_ip
-
-    # The physical WAN interface on which the traffic will arrive ('internet1'
-    # or, if available, 'internet2' or 'both')
-    # @return [String]
-    attr_accessor :uplink
-
-    # A port or port ranges that will be forwarded to the host on the LAN
-    # @return [String]
-    attr_accessor :public_port
-
-    # A port or port ranges that will receive the forwarded traffic from the WAN
-    # @return [String]
-    attr_accessor :local_port
-
-    # An array of ranges of WAN IP addresses that are allowed to make inbound
-    # connections on the specified ports or port ranges (or any)
-    # @return [List of String]
-    attr_accessor :allowed_ips
-
-    # TCP or UDP
+    # The type of protocol (must be 'tcp', 'udp', 'icmp' or 'any')
     # @return [String]
     attr_accessor :protocol
+
+    # Log this rule to syslog (true or false, boolean value) - only applicable
+    # if a syslog has been configured (optional)
+    # @return [Boolean]
+    attr_accessor :syslog_enabled
+
+    # Comma-separated list of destination port(s) (integer in the range
+    # 1-65535), or 'any'
+    # @return [String]
+    attr_accessor :dest_port
+
+    # Description of the rule (optional)
+    # @return [String]
+    attr_accessor :comment
+
+    # Comma-separated list of source port(s) (integer in the range 1-65535), or
+    # 'any'
+    # @return [String]
+    attr_accessor :src_port
+
+    # Comma-separated list of destination IP address(es) (in IP or CIDR
+    # notation), fully-qualified domain names (FQDN) or 'any'
+    # @return [String]
+    attr_accessor :dest_cidr
+
+    # 'allow' or 'deny' traffic specified by this rule
+    # @return [String]
+    attr_accessor :policy
 
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['name'] = 'name'
-      @_hash['lan_ip'] = 'lanIp'
-      @_hash['uplink'] = 'uplink'
-      @_hash['public_port'] = 'publicPort'
-      @_hash['local_port'] = 'localPort'
-      @_hash['allowed_ips'] = 'allowedIps'
+      @_hash['src_cidr'] = 'srcCidr'
       @_hash['protocol'] = 'protocol'
+      @_hash['syslog_enabled'] = 'syslogEnabled'
+      @_hash['dest_port'] = 'destPort'
+      @_hash['comment'] = 'comment'
+      @_hash['src_port'] = 'srcPort'
+      @_hash['dest_cidr'] = 'destCidr'
+      @_hash['policy'] = 'policy'
       @_hash
     end
 
-    def initialize(name = nil,
-                   lan_ip = nil,
-                   uplink = nil,
-                   public_port = nil,
-                   local_port = nil,
-                   allowed_ips = nil,
-                   protocol = nil)
-      @name = name
-      @lan_ip = lan_ip
-      @uplink = uplink
-      @public_port = public_port
-      @local_port = local_port
-      @allowed_ips = allowed_ips
+    def initialize(src_cidr = nil,
+                   protocol = nil,
+                   dest_cidr = nil,
+                   policy = nil,
+                   syslog_enabled = nil,
+                   dest_port = nil,
+                   comment = nil,
+                   src_port = nil)
+      @src_cidr = src_cidr
       @protocol = protocol
+      @syslog_enabled = syslog_enabled
+      @dest_port = dest_port
+      @comment = comment
+      @src_port = src_port
+      @dest_cidr = dest_cidr
+      @policy = policy
     end
 
     # Creates an instance of the object from a hash.
@@ -71,22 +80,24 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
-      name = hash['name']
-      lan_ip = hash['lanIp']
-      uplink = hash['uplink']
-      public_port = hash['publicPort']
-      local_port = hash['localPort']
-      allowed_ips = hash['allowedIps']
+      src_cidr = hash['srcCidr']
       protocol = hash['protocol']
+      dest_cidr = hash['destCidr']
+      policy = hash['policy']
+      syslog_enabled = hash['syslogEnabled']
+      dest_port = hash['destPort']
+      comment = hash['comment']
+      src_port = hash['srcPort']
 
       # Create object from extracted values.
-      Rule7Model.new(name,
-                     lan_ip,
-                     uplink,
-                     public_port,
-                     local_port,
-                     allowed_ips,
-                     protocol)
+      Rule7Model.new(src_cidr,
+                     protocol,
+                     dest_cidr,
+                     policy,
+                     syslog_enabled,
+                     dest_port,
+                     comment,
+                     src_port)
     end
   end
 end

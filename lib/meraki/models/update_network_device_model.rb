@@ -6,30 +6,6 @@
 module Meraki
   # UpdateNetworkDeviceModel Model.
   class UpdateNetworkDeviceModel < BaseModel
-    # The name of a device
-    # @return [String]
-    attr_accessor :name
-
-    # The tags of a device
-    # @return [String]
-    attr_accessor :tags
-
-    # The latitude of a device
-    # @return [Float]
-    attr_accessor :lat
-
-    # The longitude of a device
-    # @return [Float]
-    attr_accessor :lng
-
-    # The address of a device
-    # @return [String]
-    attr_accessor :address
-
-    # The notes for the device. String. Limited to 255 characters.
-    # @return [String]
-    attr_accessor :notes
-
     # Whether or not to set the latitude and longitude of a device based on the
     # new address. Only applies when lat and lng are not specified.
     # @return [Boolean]
@@ -43,36 +19,60 @@ module Meraki
     # @return [String]
     attr_accessor :switch_profile_id
 
+    # The address of a device
+    # @return [String]
+    attr_accessor :address
+
+    # The notes for the device. String. Limited to 255 characters.
+    # @return [String]
+    attr_accessor :notes
+
+    # The longitude of a device
+    # @return [Float]
+    attr_accessor :lng
+
+    # The name of a device
+    # @return [String]
+    attr_accessor :name
+
+    # The latitude of a device
+    # @return [Float]
+    attr_accessor :lat
+
+    # The tags of a device
+    # @return [String]
+    attr_accessor :tags
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['name'] = 'name'
-      @_hash['tags'] = 'tags'
-      @_hash['lat'] = 'lat'
-      @_hash['lng'] = 'lng'
-      @_hash['address'] = 'address'
-      @_hash['notes'] = 'notes'
       @_hash['move_map_marker'] = 'moveMapMarker'
       @_hash['switch_profile_id'] = 'switchProfileId'
+      @_hash['address'] = 'address'
+      @_hash['notes'] = 'notes'
+      @_hash['lng'] = 'lng'
+      @_hash['name'] = 'name'
+      @_hash['lat'] = 'lat'
+      @_hash['tags'] = 'tags'
       @_hash
     end
 
-    def initialize(name = nil,
-                   tags = nil,
-                   lat = nil,
-                   lng = nil,
+    def initialize(move_map_marker = nil,
+                   switch_profile_id = nil,
                    address = nil,
                    notes = nil,
-                   move_map_marker = nil,
-                   switch_profile_id = nil)
-      @name = name
-      @tags = tags
-      @lat = lat
-      @lng = lng
-      @address = address
-      @notes = notes
+                   lng = nil,
+                   name = nil,
+                   lat = nil,
+                   tags = nil)
       @move_map_marker = move_map_marker
       @switch_profile_id = switch_profile_id
+      @address = address
+      @notes = notes
+      @lng = lng
+      @name = name
+      @lat = lat
+      @tags = tags
     end
 
     # Creates an instance of the object from a hash.
@@ -80,24 +80,24 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
-      name = hash['name']
-      tags = hash['tags']
-      lat = hash['lat']
-      lng = hash['lng']
-      address = hash['address']
-      notes = hash['notes']
       move_map_marker = hash['moveMapMarker']
       switch_profile_id = hash['switchProfileId']
+      address = hash['address']
+      notes = hash['notes']
+      lng = hash['lng']
+      name = hash['name']
+      lat = hash['lat']
+      tags = hash['tags']
 
       # Create object from extracted values.
-      UpdateNetworkDeviceModel.new(name,
-                                   tags,
-                                   lat,
-                                   lng,
+      UpdateNetworkDeviceModel.new(move_map_marker,
+                                   switch_profile_id,
                                    address,
                                    notes,
-                                   move_map_marker,
-                                   switch_profile_id)
+                                   lng,
+                                   name,
+                                   lat,
+                                   tags)
     end
   end
 end

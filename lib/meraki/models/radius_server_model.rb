@@ -6,13 +6,13 @@
 module Meraki
   # RadiusServerModel Model.
   class RadiusServerModel < BaseModel
-    # IP address of your RADIUS server
-    # @return [String]
-    attr_accessor :host
-
     # UDP port the RADIUS server listens on for Access-requests
     # @return [Integer]
     attr_accessor :port
+
+    # IP address of your RADIUS server
+    # @return [String]
+    attr_accessor :host
 
     # RADIUS client shared secret
     # @return [String]
@@ -21,17 +21,17 @@ module Meraki
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['host'] = 'host'
       @_hash['port'] = 'port'
+      @_hash['host'] = 'host'
       @_hash['secret'] = 'secret'
       @_hash
     end
 
-    def initialize(host = nil,
-                   port = nil,
+    def initialize(port = nil,
+                   host = nil,
                    secret = nil)
-      @host = host
       @port = port
+      @host = host
       @secret = secret
     end
 
@@ -40,13 +40,13 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
-      host = hash['host']
       port = hash['port']
+      host = hash['host']
       secret = hash['secret']
 
       # Create object from extracted values.
-      RadiusServerModel.new(host,
-                            port,
+      RadiusServerModel.new(port,
+                            host,
                             secret)
     end
   end

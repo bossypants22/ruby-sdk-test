@@ -6,26 +6,26 @@
 module Meraki
   # ApTagsAndVlanIdModel Model.
   class ApTagsAndVlanIdModel < BaseModel
-    # Comma-separated list of AP tags
-    # @return [String]
-    attr_accessor :tags
-
     # Numerical identifier that is assigned to the VLAN
     # @return [Integer]
     attr_accessor :vlan_id
 
+    # Comma-separated list of AP tags
+    # @return [String]
+    attr_accessor :tags
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['tags'] = 'tags'
       @_hash['vlan_id'] = 'vlanId'
+      @_hash['tags'] = 'tags'
       @_hash
     end
 
-    def initialize(tags = nil,
-                   vlan_id = nil)
-      @tags = tags
+    def initialize(vlan_id = nil,
+                   tags = nil)
       @vlan_id = vlan_id
+      @tags = tags
     end
 
     # Creates an instance of the object from a hash.
@@ -33,12 +33,12 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
-      tags = hash['tags']
       vlan_id = hash['vlanId']
+      tags = hash['tags']
 
       # Create object from extracted values.
-      ApTagsAndVlanIdModel.new(tags,
-                               vlan_id)
+      ApTagsAndVlanIdModel.new(vlan_id,
+                               tags)
     end
   end
 end

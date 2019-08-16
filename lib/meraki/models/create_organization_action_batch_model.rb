@@ -6,15 +6,16 @@
 module Meraki
   # CreateOrganizationActionBatchModel Model.
   class CreateOrganizationActionBatchModel < BaseModel
-    # Set to true for immediate execution. Set to false if the action should be
-    # previewed before executing.
-    # @return [Boolean]
-    attr_accessor :confirmed
-
-    # Force the batch to run synchronous. There can be at most 20 actions in
-    # synchronous batch.
+    # Set to true to force the batch to run synchronous. There can be at most 20
+    # actions in synchronous batch. Defaults to false.
     # @return [Boolean]
     attr_accessor :synchronous
+
+    # Set to true for immediate execution. Set to false if the action should be
+    # previewed before executing. This property cannot be unset once it is true.
+    # Defaults to false.
+    # @return [Boolean]
+    attr_accessor :confirmed
 
     # A set of changes to make as part of this action (<a
     # href='https://developer.cisco.com/meraki/api/#/rest/guides/action-batches/
@@ -25,17 +26,17 @@ module Meraki
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['confirmed'] = 'confirmed'
       @_hash['synchronous'] = 'synchronous'
+      @_hash['confirmed'] = 'confirmed'
       @_hash['actions'] = 'actions'
       @_hash
     end
 
     def initialize(actions = nil,
-                   confirmed = nil,
-                   synchronous = nil)
-      @confirmed = confirmed
+                   synchronous = nil,
+                   confirmed = nil)
       @synchronous = synchronous
+      @confirmed = confirmed
       @actions = actions
     end
 
@@ -52,13 +53,13 @@ module Meraki
           actions << (ActionModel.from_hash(structure) if structure)
         end
       end
-      confirmed = hash['confirmed']
       synchronous = hash['synchronous']
+      confirmed = hash['confirmed']
 
       # Create object from extracted values.
       CreateOrganizationActionBatchModel.new(actions,
-                                             confirmed,
-                                             synchronous)
+                                             synchronous,
+                                             confirmed)
     end
   end
 end

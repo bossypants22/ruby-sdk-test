@@ -6,6 +6,15 @@
 module Meraki
   # WipeNetworkSmDeviceModel Model.
   class WipeNetworkSmDeviceModel < BaseModel
+    # The pin number (a six digit value) for wiping a macOS device. Required
+    # only for macOS devices.
+    # @return [Integer]
+    attr_accessor :pin
+
+    # The serial of the device to be wiped.
+    # @return [String]
+    attr_accessor :serial
+
     # The wifiMac of the device to be wiped.
     # @return [String]
     attr_accessor :wifi_mac
@@ -14,33 +23,24 @@ module Meraki
     # @return [String]
     attr_accessor :id
 
-    # The serial of the device to be wiped.
-    # @return [String]
-    attr_accessor :serial
-
-    # The pin number (a six digit value) for wiping a macOS device. Required
-    # only for macOS devices.
-    # @return [Integer]
-    attr_accessor :pin
-
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
+      @_hash['pin'] = 'pin'
+      @_hash['serial'] = 'serial'
       @_hash['wifi_mac'] = 'wifiMac'
       @_hash['id'] = 'id'
-      @_hash['serial'] = 'serial'
-      @_hash['pin'] = 'pin'
       @_hash
     end
 
-    def initialize(wifi_mac = nil,
-                   id = nil,
+    def initialize(pin = nil,
                    serial = nil,
-                   pin = nil)
+                   wifi_mac = nil,
+                   id = nil)
+      @pin = pin
+      @serial = serial
       @wifi_mac = wifi_mac
       @id = id
-      @serial = serial
-      @pin = pin
     end
 
     # Creates an instance of the object from a hash.
@@ -48,16 +48,16 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
+      pin = hash['pin']
+      serial = hash['serial']
       wifi_mac = hash['wifiMac']
       id = hash['id']
-      serial = hash['serial']
-      pin = hash['pin']
 
       # Create object from extracted values.
-      WipeNetworkSmDeviceModel.new(wifi_mac,
-                                   id,
+      WipeNetworkSmDeviceModel.new(pin,
                                    serial,
-                                   pin)
+                                   wifi_mac,
+                                   id)
     end
   end
 end

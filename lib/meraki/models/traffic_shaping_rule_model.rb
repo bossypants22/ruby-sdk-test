@@ -6,20 +6,9 @@
 module Meraki
   # TrafficShapingRuleModel Model.
   class TrafficShapingRuleModel < BaseModel
-    # A list of objects describing the definitions of your traffic shaping rule.
-    # At least one definition is required.
-    # @return [List of DefinitionModel]
-    attr_accessor :definitions
-
     # An object describing the bandwidth settings for your rule.
     # @return [PerClientBandwidthLimitsModel]
     attr_accessor :per_client_bandwidth_limits
-
-    # The DSCP tag applied by your rule. null means 'Do not change DSCP tag'.
-    #     For a list of possible tag values, use the
-    # trafficShaping/dscpTaggingOptions endpoint.
-    # @return [Integer]
-    attr_accessor :dscp_tag_value
 
     # The PCP tag applied by your rule. Can be 0 (lowest priority) through 7
     # (highest priority).
@@ -27,32 +16,43 @@ module Meraki
     # @return [Integer]
     attr_accessor :pcp_tag_value
 
+    # The DSCP tag applied by your rule. null means 'Do not change DSCP tag'.
+    #     For a list of possible tag values, use the
+    # trafficShaping/dscpTaggingOptions endpoint.
+    # @return [Integer]
+    attr_accessor :dscp_tag_value
+
     # A string, indicating the priority level for packets bound to your rule.
     #     Can be 'low', 'normal' or 'high'.
     # @return [String]
     attr_accessor :priority
 
+    # A list of objects describing the definitions of your traffic shaping rule.
+    # At least one definition is required.
+    # @return [List of DefinitionModel]
+    attr_accessor :definitions
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['definitions'] = 'definitions'
       @_hash['per_client_bandwidth_limits'] = 'perClientBandwidthLimits'
-      @_hash['dscp_tag_value'] = 'dscpTagValue'
       @_hash['pcp_tag_value'] = 'pcpTagValue'
+      @_hash['dscp_tag_value'] = 'dscpTagValue'
       @_hash['priority'] = 'priority'
+      @_hash['definitions'] = 'definitions'
       @_hash
     end
 
     def initialize(definitions = nil,
                    per_client_bandwidth_limits = nil,
-                   dscp_tag_value = nil,
                    pcp_tag_value = nil,
+                   dscp_tag_value = nil,
                    priority = nil)
-      @definitions = definitions
       @per_client_bandwidth_limits = per_client_bandwidth_limits
-      @dscp_tag_value = dscp_tag_value
       @pcp_tag_value = pcp_tag_value
+      @dscp_tag_value = dscp_tag_value
       @priority = priority
+      @definitions = definitions
     end
 
     # Creates an instance of the object from a hash.
@@ -71,15 +71,15 @@ module Meraki
       if hash['perClientBandwidthLimits']
         per_client_bandwidth_limits = PerClientBandwidthLimitsModel.from_hash(hash['perClientBandwidthLimits'])
       end
-      dscp_tag_value = hash['dscpTagValue']
       pcp_tag_value = hash['pcpTagValue']
+      dscp_tag_value = hash['dscpTagValue']
       priority = hash['priority']
 
       # Create object from extracted values.
       TrafficShapingRuleModel.new(definitions,
                                   per_client_bandwidth_limits,
-                                  dscp_tag_value,
                                   pcp_tag_value,
+                                  dscp_tag_value,
                                   priority)
     end
   end

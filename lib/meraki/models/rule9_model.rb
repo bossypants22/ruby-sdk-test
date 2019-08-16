@@ -6,45 +6,49 @@
 module Meraki
   # Rule9Model Model.
   class Rule9Model < BaseModel
-    # A list of objects describing the definitions of your traffic shaping rule.
-    # At least one definition is required.
-    # @return [List of DefinitionModel]
-    attr_accessor :definitions
+    # The type of protocol (must be 'tcp', 'udp', 'icmp' or 'any')
+    # @return [String]
+    attr_accessor :protocol
 
-    # An object describing the bandwidth settings for your rule.
-    # @return [PerClientBandwidthLimitsModel]
-    attr_accessor :per_client_bandwidth_limits
+    # Comma-separated list of destination port(s) (integer in the range
+    # 1-65535), or 'any'
+    # @return [String]
+    attr_accessor :dest_port
 
-    # The DSCP tag applied by your rule. null means 'Do not change DSCP tag'.
-    #     For a list of possible tag values, use the
-    # trafficShaping/dscpTaggingOptions endpoint.
-    # @return [Integer]
-    attr_accessor :dscp_tag_value
+    # Description of the rule (optional)
+    # @return [String]
+    attr_accessor :comment
 
-    # The PCP tag applied by your rule. Can be 0 (lowest priority) through 7
-    # (highest priority).
-    #     null means 'Do not set PCP tag'.
-    # @return [Integer]
-    attr_accessor :pcp_tag_value
+    # Comma-separated list of destination IP address(es) (in IP or CIDR
+    # notation), fully-qualified domain names (FQDN) or 'any'
+    # @return [String]
+    attr_accessor :dest_cidr
+
+    # 'allow' or 'deny' traffic specified by this rule
+    # @return [String]
+    attr_accessor :policy
 
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['definitions'] = 'definitions'
-      @_hash['per_client_bandwidth_limits'] = 'perClientBandwidthLimits'
-      @_hash['dscp_tag_value'] = 'dscpTagValue'
-      @_hash['pcp_tag_value'] = 'pcpTagValue'
+      @_hash['protocol'] = 'protocol'
+      @_hash['dest_port'] = 'destPort'
+      @_hash['comment'] = 'comment'
+      @_hash['dest_cidr'] = 'destCidr'
+      @_hash['policy'] = 'policy'
       @_hash
     end
 
-    def initialize(definitions = nil,
-                   per_client_bandwidth_limits = nil,
-                   dscp_tag_value = nil,
-                   pcp_tag_value = nil)
-      @definitions = definitions
-      @per_client_bandwidth_limits = per_client_bandwidth_limits
-      @dscp_tag_value = dscp_tag_value
-      @pcp_tag_value = pcp_tag_value
+    def initialize(protocol = nil,
+                   dest_cidr = nil,
+                   policy = nil,
+                   dest_port = nil,
+                   comment = nil)
+      @protocol = protocol
+      @dest_port = dest_port
+      @comment = comment
+      @dest_cidr = dest_cidr
+      @policy = policy
     end
 
     # Creates an instance of the object from a hash.
@@ -52,25 +56,18 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
-      # Parameter is an array, so we need to iterate through it
-      definitions = nil
-      unless hash['definitions'].nil?
-        definitions = []
-        hash['definitions'].each do |structure|
-          definitions << (DefinitionModel.from_hash(structure) if structure)
-        end
-      end
-      if hash['perClientBandwidthLimits']
-        per_client_bandwidth_limits = PerClientBandwidthLimitsModel.from_hash(hash['perClientBandwidthLimits'])
-      end
-      dscp_tag_value = hash['dscpTagValue']
-      pcp_tag_value = hash['pcpTagValue']
+      protocol = hash['protocol']
+      dest_cidr = hash['destCidr']
+      policy = hash['policy']
+      dest_port = hash['destPort']
+      comment = hash['comment']
 
       # Create object from extracted values.
-      Rule9Model.new(definitions,
-                     per_client_bandwidth_limits,
-                     dscp_tag_value,
-                     pcp_tag_value)
+      Rule9Model.new(protocol,
+                     dest_cidr,
+                     policy,
+                     dest_port,
+                     comment)
     end
   end
 end

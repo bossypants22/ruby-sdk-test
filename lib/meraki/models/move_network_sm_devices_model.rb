@@ -6,14 +6,6 @@
 module Meraki
   # MoveNetworkSmDevicesModel Model.
   class MoveNetworkSmDevicesModel < BaseModel
-    # The wifiMacs of the devices to be moved.
-    # @return [String]
-    attr_accessor :wifi_macs
-
-    # The ids of the devices to be moved.
-    # @return [String]
-    attr_accessor :ids
-
     # The serials of the devices to be moved.
     # @return [String]
     attr_accessor :serials
@@ -23,31 +15,39 @@ module Meraki
     # @return [String]
     attr_accessor :scope
 
+    # The ids of the devices to be moved.
+    # @return [String]
+    attr_accessor :ids
+
     # The new network to which the devices will be moved.
     # @return [String]
     attr_accessor :new_network
 
+    # The wifiMacs of the devices to be moved.
+    # @return [String]
+    attr_accessor :wifi_macs
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['wifi_macs'] = 'wifiMacs'
-      @_hash['ids'] = 'ids'
       @_hash['serials'] = 'serials'
       @_hash['scope'] = 'scope'
+      @_hash['ids'] = 'ids'
       @_hash['new_network'] = 'newNetwork'
+      @_hash['wifi_macs'] = 'wifiMacs'
       @_hash
     end
 
     def initialize(new_network = nil,
-                   wifi_macs = nil,
-                   ids = nil,
                    serials = nil,
-                   scope = nil)
-      @wifi_macs = wifi_macs
-      @ids = ids
+                   scope = nil,
+                   ids = nil,
+                   wifi_macs = nil)
       @serials = serials
       @scope = scope
+      @ids = ids
       @new_network = new_network
+      @wifi_macs = wifi_macs
     end
 
     # Creates an instance of the object from a hash.
@@ -56,17 +56,17 @@ module Meraki
 
       # Extract variables from the hash.
       new_network = hash['newNetwork']
-      wifi_macs = hash['wifiMacs']
-      ids = hash['ids']
       serials = hash['serials']
       scope = hash['scope']
+      ids = hash['ids']
+      wifi_macs = hash['wifiMacs']
 
       # Create object from extracted values.
       MoveNetworkSmDevicesModel.new(new_network,
-                                    wifi_macs,
-                                    ids,
                                     serials,
-                                    scope)
+                                    scope,
+                                    ids,
+                                    wifi_macs)
     end
   end
 end

@@ -10,11 +10,6 @@ module Meraki
     # @return [String]
     attr_accessor :plugin_bundle_id
 
-    # Whether or not to enable browser traffic filtering (one of true, false).
-    # Defaults to true
-    # @return [Boolean]
-    attr_accessor :filter_browsers
-
     # Whether or not to enable socket traffic filtering (one of true, false).
     # Defaults to true
     # @return [Boolean]
@@ -25,24 +20,29 @@ module Meraki
     # @return [List of VendorConfigModel]
     attr_accessor :vendor_config
 
+    # Whether or not to enable browser traffic filtering (one of true, false).
+    # Defaults to true
+    # @return [Boolean]
+    attr_accessor :filter_browsers
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
       @_hash['plugin_bundle_id'] = 'PluginBundleID'
-      @_hash['filter_browsers'] = 'FilterBrowsers'
       @_hash['filter_sockets'] = 'FilterSockets'
       @_hash['vendor_config'] = 'VendorConfig'
+      @_hash['filter_browsers'] = 'FilterBrowsers'
       @_hash
     end
 
     def initialize(vendor_config = nil,
                    plugin_bundle_id = nil,
-                   filter_browsers = nil,
-                   filter_sockets = nil)
+                   filter_sockets = nil,
+                   filter_browsers = nil)
       @plugin_bundle_id = plugin_bundle_id
-      @filter_browsers = filter_browsers
       @filter_sockets = filter_sockets
       @vendor_config = vendor_config
+      @filter_browsers = filter_browsers
     end
 
     # Creates an instance of the object from a hash.
@@ -59,14 +59,14 @@ module Meraki
         end
       end
       plugin_bundle_id = hash['PluginBundleID']
-      filter_browsers = hash['FilterBrowsers']
       filter_sockets = hash['FilterSockets']
+      filter_browsers = hash['FilterBrowsers']
 
       # Create object from extracted values.
       AddNetworkSmProfileClarityModel.new(vendor_config,
                                           plugin_bundle_id,
-                                          filter_browsers,
-                                          filter_sockets)
+                                          filter_sockets,
+                                          filter_browsers)
     end
   end
 end

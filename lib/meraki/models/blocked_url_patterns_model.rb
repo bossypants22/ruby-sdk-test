@@ -8,7 +8,7 @@ module Meraki
   class BlockedUrlPatternsModel < BaseModel
     # How URL patterns are applied. Can be 'network default', 'append' or
     # 'override'.
-    # @return [Settings2Enum]
+    # @return [Settings1Enum]
     attr_accessor :settings
 
     # A blacklist of URL patterns to block

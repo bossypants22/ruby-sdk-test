@@ -6,13 +6,13 @@
 module Meraki
   # The content filtering settings for your group policy
   class ContentFilteringModel < BaseModel
-    # Settings for whitelisted URL patterns
-    # @return [AllowedUrlPatternsModel]
-    attr_accessor :allowed_url_patterns
-
     # Settings for blacklisted URL patterns
     # @return [BlockedUrlPatternsModel]
     attr_accessor :blocked_url_patterns
+
+    # Settings for whitelisted URL patterns
+    # @return [AllowedUrlPatternsModel]
+    attr_accessor :allowed_url_patterns
 
     # Settings for blacklisted URL categories
     # @return [BlockedUrlCategoriesModel]
@@ -21,17 +21,17 @@ module Meraki
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['allowed_url_patterns'] = 'allowedUrlPatterns'
       @_hash['blocked_url_patterns'] = 'blockedUrlPatterns'
+      @_hash['allowed_url_patterns'] = 'allowedUrlPatterns'
       @_hash['blocked_url_categories'] = 'blockedUrlCategories'
       @_hash
     end
 
-    def initialize(allowed_url_patterns = nil,
-                   blocked_url_patterns = nil,
+    def initialize(blocked_url_patterns = nil,
+                   allowed_url_patterns = nil,
                    blocked_url_categories = nil)
-      @allowed_url_patterns = allowed_url_patterns
       @blocked_url_patterns = blocked_url_patterns
+      @allowed_url_patterns = allowed_url_patterns
       @blocked_url_categories = blocked_url_categories
     end
 
@@ -40,19 +40,19 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
-      if hash['allowedUrlPatterns']
-        allowed_url_patterns = AllowedUrlPatternsModel.from_hash(hash['allowedUrlPatterns'])
-      end
       if hash['blockedUrlPatterns']
         blocked_url_patterns = BlockedUrlPatternsModel.from_hash(hash['blockedUrlPatterns'])
+      end
+      if hash['allowedUrlPatterns']
+        allowed_url_patterns = AllowedUrlPatternsModel.from_hash(hash['allowedUrlPatterns'])
       end
       if hash['blockedUrlCategories']
         blocked_url_categories = BlockedUrlCategoriesModel.from_hash(hash['blockedUrlCategories'])
       end
 
       # Create object from extracted values.
-      ContentFilteringModel.new(allowed_url_patterns,
-                                blocked_url_patterns,
+      ContentFilteringModel.new(blocked_url_patterns,
+                                allowed_url_patterns,
                                 blocked_url_categories)
     end
   end

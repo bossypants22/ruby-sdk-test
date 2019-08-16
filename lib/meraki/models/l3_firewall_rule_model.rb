@@ -6,14 +6,6 @@
 module Meraki
   # L3FirewallRuleModel Model.
   class L3FirewallRuleModel < BaseModel
-    # Description of the rule (optional)
-    # @return [String]
-    attr_accessor :comment
-
-    # 'allow' or 'deny' traffic specified by this rule
-    # @return [String]
-    attr_accessor :policy
-
     # The type of protocol (must be 'tcp', 'udp', 'icmp' or 'any')
     # @return [String]
     attr_accessor :protocol
@@ -23,32 +15,40 @@ module Meraki
     # @return [String]
     attr_accessor :dest_port
 
+    # Description of the rule (optional)
+    # @return [String]
+    attr_accessor :comment
+
     # Destination IP address (in IP or CIDR notation), a fully-qualified domain
     # name (FQDN, if your network supports it) or 'any'.
     # @return [String]
     attr_accessor :dest_cidr
 
+    # 'allow' or 'deny' traffic specified by this rule
+    # @return [String]
+    attr_accessor :policy
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['comment'] = 'comment'
-      @_hash['policy'] = 'policy'
       @_hash['protocol'] = 'protocol'
       @_hash['dest_port'] = 'destPort'
+      @_hash['comment'] = 'comment'
       @_hash['dest_cidr'] = 'destCidr'
+      @_hash['policy'] = 'policy'
       @_hash
     end
 
-    def initialize(policy = nil,
-                   protocol = nil,
+    def initialize(protocol = nil,
                    dest_cidr = nil,
-                   comment = nil,
-                   dest_port = nil)
-      @comment = comment
-      @policy = policy
+                   policy = nil,
+                   dest_port = nil,
+                   comment = nil)
       @protocol = protocol
       @dest_port = dest_port
+      @comment = comment
       @dest_cidr = dest_cidr
+      @policy = policy
     end
 
     # Creates an instance of the object from a hash.
@@ -56,18 +56,18 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
-      policy = hash['policy']
       protocol = hash['protocol']
       dest_cidr = hash['destCidr']
-      comment = hash['comment']
+      policy = hash['policy']
       dest_port = hash['destPort']
+      comment = hash['comment']
 
       # Create object from extracted values.
-      L3FirewallRuleModel.new(policy,
-                              protocol,
+      L3FirewallRuleModel.new(protocol,
                               dest_cidr,
-                              comment,
-                              dest_port)
+                              policy,
+                              dest_port,
+                              comment)
     end
   end
 end
