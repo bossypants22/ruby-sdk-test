@@ -6,10 +6,13 @@
 module Meraki
   # UpdateNetworkSmDevicesTagsModel Model.
   class UpdateNetworkSmDevicesTagsModel < BaseModel
-    # One of add, delete, or update. Only devices that have been modified will
-    # be returned.
+    # The wifiMacs of the devices to be modified.
     # @return [String]
-    attr_accessor :update_action
+    attr_accessor :wifi_macs
+
+    # The ids of the devices to be modified.
+    # @return [String]
+    attr_accessor :ids
 
     # The serials of the devices to be modified.
     # @return [String]
@@ -20,42 +23,39 @@ module Meraki
     # @return [String]
     attr_accessor :scope
 
-    # The ids of the devices to be modified.
-    # @return [String]
-    attr_accessor :ids
-
-    # The wifiMacs of the devices to be modified.
-    # @return [String]
-    attr_accessor :wifi_macs
-
     # The tags to be added, deleted, or updated.
     # @return [String]
     attr_accessor :tags
 
+    # One of add, delete, or update. Only devices that have been modified will
+    # be returned.
+    # @return [String]
+    attr_accessor :update_action
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['update_action'] = 'updateAction'
+      @_hash['wifi_macs'] = 'wifiMacs'
+      @_hash['ids'] = 'ids'
       @_hash['serials'] = 'serials'
       @_hash['scope'] = 'scope'
-      @_hash['ids'] = 'ids'
-      @_hash['wifi_macs'] = 'wifiMacs'
       @_hash['tags'] = 'tags'
+      @_hash['update_action'] = 'updateAction'
       @_hash
     end
 
-    def initialize(update_action = nil,
-                   tags = nil,
-                   serials = nil,
-                   scope = nil,
+    def initialize(tags = nil,
+                   update_action = nil,
+                   wifi_macs = nil,
                    ids = nil,
-                   wifi_macs = nil)
-      @update_action = update_action
+                   serials = nil,
+                   scope = nil)
+      @wifi_macs = wifi_macs
+      @ids = ids
       @serials = serials
       @scope = scope
-      @ids = ids
-      @wifi_macs = wifi_macs
       @tags = tags
+      @update_action = update_action
     end
 
     # Creates an instance of the object from a hash.
@@ -63,20 +63,20 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
-      update_action = hash['updateAction']
       tags = hash['tags']
+      update_action = hash['updateAction']
+      wifi_macs = hash['wifiMacs']
+      ids = hash['ids']
       serials = hash['serials']
       scope = hash['scope']
-      ids = hash['ids']
-      wifi_macs = hash['wifiMacs']
 
       # Create object from extracted values.
-      UpdateNetworkSmDevicesTagsModel.new(update_action,
-                                          tags,
-                                          serials,
-                                          scope,
+      UpdateNetworkSmDevicesTagsModel.new(tags,
+                                          update_action,
+                                          wifi_macs,
                                           ids,
-                                          wifi_macs)
+                                          serials,
+                                          scope)
     end
   end
 end

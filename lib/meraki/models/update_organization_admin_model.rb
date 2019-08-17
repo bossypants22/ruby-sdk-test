@@ -6,6 +6,11 @@
 module Meraki
   # UpdateOrganizationAdminModel Model.
   class UpdateOrganizationAdminModel < BaseModel
+    # The email of the dashboard administrator. This attribute can not be
+    # updated.
+    # @return [String]
+    attr_accessor :email
+
     # The name of the dashboard administrator
     # @return [String]
     attr_accessor :name
@@ -15,40 +20,35 @@ module Meraki
     # @return [String]
     attr_accessor :org_access
 
-    # The list of networks that the dashboard administrator has privileges on
-    # @return [List of Network1Model]
-    attr_accessor :networks
-
-    # The email of the dashboard administrator. This attribute can not be
-    # updated.
-    # @return [String]
-    attr_accessor :email
-
     # The list of tags that the dashboard administrator has privileges on
-    # @return [List of Tag1Model]
+    # @return [List of TagModel]
     attr_accessor :tags
+
+    # The list of networks that the dashboard administrator has privileges on
+    # @return [List of NetworkModel]
+    attr_accessor :networks
 
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
+      @_hash['email'] = 'email'
       @_hash['name'] = 'name'
       @_hash['org_access'] = 'orgAccess'
-      @_hash['networks'] = 'networks'
-      @_hash['email'] = 'email'
       @_hash['tags'] = 'tags'
+      @_hash['networks'] = 'networks'
       @_hash
     end
 
-    def initialize(name = nil,
+    def initialize(email = nil,
+                   name = nil,
                    org_access = nil,
-                   networks = nil,
-                   email = nil,
-                   tags = nil)
+                   tags = nil,
+                   networks = nil)
+      @email = email
       @name = name
       @org_access = org_access
-      @networks = networks
-      @email = email
       @tags = tags
+      @networks = networks
     end
 
     # Creates an instance of the object from a hash.
@@ -56,32 +56,32 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
+      email = hash['email']
       name = hash['name']
       org_access = hash['orgAccess']
-      # Parameter is an array, so we need to iterate through it
-      networks = nil
-      unless hash['networks'].nil?
-        networks = []
-        hash['networks'].each do |structure|
-          networks << (Network1Model.from_hash(structure) if structure)
-        end
-      end
-      email = hash['email']
       # Parameter is an array, so we need to iterate through it
       tags = nil
       unless hash['tags'].nil?
         tags = []
         hash['tags'].each do |structure|
-          tags << (Tag1Model.from_hash(structure) if structure)
+          tags << (TagModel.from_hash(structure) if structure)
+        end
+      end
+      # Parameter is an array, so we need to iterate through it
+      networks = nil
+      unless hash['networks'].nil?
+        networks = []
+        hash['networks'].each do |structure|
+          networks << (NetworkModel.from_hash(structure) if structure)
         end
       end
 
       # Create object from extracted values.
-      UpdateOrganizationAdminModel.new(name,
+      UpdateOrganizationAdminModel.new(email,
+                                       name,
                                        org_access,
-                                       networks,
-                                       email,
-                                       tags)
+                                       tags,
+                                       networks)
     end
   end
 end

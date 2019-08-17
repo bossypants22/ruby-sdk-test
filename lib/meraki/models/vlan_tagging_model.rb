@@ -9,7 +9,7 @@ module Meraki
   class VlanTaggingModel < BaseModel
     # How VLAN tagging is applied. Can be 'network default', 'ignore' or
     # 'custom'.
-    # @return [SettingsEnum]
+    # @return [Settings5Enum]
     attr_accessor :settings
 
     # The ID of the vlan you want to tag. This only applies if 'settings' is set

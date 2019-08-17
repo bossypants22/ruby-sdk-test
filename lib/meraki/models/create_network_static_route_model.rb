@@ -6,13 +6,13 @@
 module Meraki
   # CreateNetworkStaticRouteModel Model.
   class CreateNetworkStaticRouteModel < BaseModel
-    # The subnet of the static route
-    # @return [String]
-    attr_accessor :subnet
-
     # The name of the new static route
     # @return [String]
     attr_accessor :name
+
+    # The subnet of the static route
+    # @return [String]
+    attr_accessor :subnet
 
     # The gateway IP (next hop) of the static route
     # @return [String]
@@ -21,17 +21,17 @@ module Meraki
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['subnet'] = 'subnet'
       @_hash['name'] = 'name'
+      @_hash['subnet'] = 'subnet'
       @_hash['gateway_ip'] = 'gatewayIp'
       @_hash
     end
 
-    def initialize(subnet = nil,
-                   name = nil,
+    def initialize(name = nil,
+                   subnet = nil,
                    gateway_ip = nil)
-      @subnet = subnet
       @name = name
+      @subnet = subnet
       @gateway_ip = gateway_ip
     end
 
@@ -40,13 +40,13 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
-      subnet = hash['subnet']
       name = hash['name']
+      subnet = hash['subnet']
       gateway_ip = hash['gatewayIp']
 
       # Create object from extracted values.
-      CreateNetworkStaticRouteModel.new(subnet,
-                                        name,
+      CreateNetworkStaticRouteModel.new(name,
+                                        subnet,
                                         gateway_ip)
     end
   end

@@ -6,6 +6,10 @@
 module Meraki
   # CreateNetworkSwitchPortScheduleModel Model.
   class CreateNetworkSwitchPortScheduleModel < BaseModel
+    # The name for your port schedule. Required
+    # @return [String]
+    attr_accessor :name
+
     # The schedule for switch port scheduling. Schedules are applied to days of
     # the week.
     #     When it's empty, default schedule with all days of a week are
@@ -15,22 +19,18 @@ module Meraki
     # @return [PortScheduleModel]
     attr_accessor :port_schedule
 
-    # The name for your port schedule. Required
-    # @return [String]
-    attr_accessor :name
-
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['port_schedule'] = 'portSchedule'
       @_hash['name'] = 'name'
+      @_hash['port_schedule'] = 'portSchedule'
       @_hash
     end
 
     def initialize(name = nil,
                    port_schedule = nil)
-      @port_schedule = port_schedule
       @name = name
+      @port_schedule = port_schedule
     end
 
     # Creates an instance of the object from a hash.

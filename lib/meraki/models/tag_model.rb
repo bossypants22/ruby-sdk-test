@@ -6,26 +6,26 @@
 module Meraki
   # TagModel Model.
   class TagModel < BaseModel
-    # The privilege of the SAML administrator on the tag
-    # @return [String]
-    attr_accessor :access
-
     # The name of the tag
     # @return [String]
     attr_accessor :tag
 
+    # The privilege of the dashboard administrator on the tag
+    # @return [String]
+    attr_accessor :access
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['access'] = 'access'
       @_hash['tag'] = 'tag'
+      @_hash['access'] = 'access'
       @_hash
     end
 
-    def initialize(access = nil,
-                   tag = nil)
-      @access = access
+    def initialize(tag = nil,
+                   access = nil)
       @tag = tag
+      @access = access
     end
 
     # Creates an instance of the object from a hash.
@@ -33,12 +33,12 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
-      access = hash['access']
       tag = hash['tag']
+      access = hash['access']
 
       # Create object from extracted values.
-      TagModel.new(access,
-                   tag)
+      TagModel.new(tag,
+                   access)
     end
   end
 end

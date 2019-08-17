@@ -17,11 +17,9 @@ module Meraki
     # @return [String]
     attr_accessor :time_zone
 
-    # Disables access to the device status page (<a
-    # target='_blank'>http://[device's LAN IP])</a>. Optional. Can only be set
-    # if disableMyMerakiCom is set to false
-    # @return [Boolean]
-    attr_accessor :disable_remote_status_page
+    # A space-separated list of tags to be applied to the network
+    # @return [String]
+    attr_accessor :tags
 
     # Disables the local device status pages (<a target='_blank'
     # href='http://my.meraki.com/'>my.meraki.com, </a><a target='_blank'
@@ -32,31 +30,33 @@ module Meraki
     # @return [Boolean]
     attr_accessor :disable_my_meraki_com
 
-    # A space-separated list of tags to be applied to the network
-    # @return [String]
-    attr_accessor :tags
+    # Disables access to the device status page (<a
+    # target='_blank'>http://[device's LAN IP])</a>. Optional. Can only be set
+    # if disableMyMerakiCom is set to false
+    # @return [Boolean]
+    attr_accessor :disable_remote_status_page
 
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
       @_hash['name'] = 'name'
       @_hash['time_zone'] = 'timeZone'
-      @_hash['disable_remote_status_page'] = 'disableRemoteStatusPage'
-      @_hash['disable_my_meraki_com'] = 'disableMyMerakiCom'
       @_hash['tags'] = 'tags'
+      @_hash['disable_my_meraki_com'] = 'disableMyMerakiCom'
+      @_hash['disable_remote_status_page'] = 'disableRemoteStatusPage'
       @_hash
     end
 
     def initialize(name = nil,
                    time_zone = nil,
-                   disable_remote_status_page = nil,
+                   tags = nil,
                    disable_my_meraki_com = nil,
-                   tags = nil)
+                   disable_remote_status_page = nil)
       @name = name
       @time_zone = time_zone
-      @disable_remote_status_page = disable_remote_status_page
-      @disable_my_meraki_com = disable_my_meraki_com
       @tags = tags
+      @disable_my_meraki_com = disable_my_meraki_com
+      @disable_remote_status_page = disable_remote_status_page
     end
 
     # Creates an instance of the object from a hash.
@@ -66,16 +66,16 @@ module Meraki
       # Extract variables from the hash.
       name = hash['name']
       time_zone = hash['timeZone']
-      disable_remote_status_page = hash['disableRemoteStatusPage']
-      disable_my_meraki_com = hash['disableMyMerakiCom']
       tags = hash['tags']
+      disable_my_meraki_com = hash['disableMyMerakiCom']
+      disable_remote_status_page = hash['disableRemoteStatusPage']
 
       # Create object from extracted values.
       UpdateNetworkModel.new(name,
                              time_zone,
-                             disable_remote_status_page,
+                             tags,
                              disable_my_meraki_com,
-                             tags)
+                             disable_remote_status_page)
     end
   end
 end

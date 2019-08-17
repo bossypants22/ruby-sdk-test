@@ -6,27 +6,27 @@
 module Meraki
   # UpdateNetworkAlertSettingsModel Model.
   class UpdateNetworkAlertSettingsModel < BaseModel
+    # The network_wide destinations for all alerts on the network.
+    # @return [DefaultDestinationsModel]
+    attr_accessor :default_destinations
+
     # Alert-specific configuration for each type. Only alerts that pertain to
     # the network can be updated.
     # @return [List of AlertModel]
     attr_accessor :alerts
 
-    # The network_wide destinations for all alerts on the network.
-    # @return [DefaultDestinationsModel]
-    attr_accessor :default_destinations
-
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['alerts'] = 'alerts'
       @_hash['default_destinations'] = 'defaultDestinations'
+      @_hash['alerts'] = 'alerts'
       @_hash
     end
 
-    def initialize(alerts = nil,
-                   default_destinations = nil)
-      @alerts = alerts
+    def initialize(default_destinations = nil,
+                   alerts = nil)
       @default_destinations = default_destinations
+      @alerts = alerts
     end
 
     # Creates an instance of the object from a hash.
@@ -34,6 +34,9 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
+      if hash['defaultDestinations']
+        default_destinations = DefaultDestinationsModel.from_hash(hash['defaultDestinations'])
+      end
       # Parameter is an array, so we need to iterate through it
       alerts = nil
       unless hash['alerts'].nil?
@@ -42,13 +45,10 @@ module Meraki
           alerts << (AlertModel.from_hash(structure) if structure)
         end
       end
-      if hash['defaultDestinations']
-        default_destinations = DefaultDestinationsModel.from_hash(hash['defaultDestinations'])
-      end
 
       # Create object from extracted values.
-      UpdateNetworkAlertSettingsModel.new(alerts,
-                                          default_destinations)
+      UpdateNetworkAlertSettingsModel.new(default_destinations,
+                                          alerts)
     end
   end
 end

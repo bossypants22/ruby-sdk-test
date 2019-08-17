@@ -7,7 +7,7 @@ module Meraki
   # UpdateNetworkOneToOneNatRulesModel Model.
   class UpdateNetworkOneToOneNatRulesModel < BaseModel
     # An array of 1:1 nat rules
-    # @return [List of Rule3Model]
+    # @return [List of Rule6Model]
     attr_accessor :rules
 
     # A mapping from model property names to API property names.
@@ -31,7 +31,7 @@ module Meraki
       unless hash['rules'].nil?
         rules = []
         hash['rules'].each do |structure|
-          rules << (Rule3Model.from_hash(structure) if structure)
+          rules << (Rule6Model.from_hash(structure) if structure)
         end
       end
 

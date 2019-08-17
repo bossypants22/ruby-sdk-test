@@ -8,7 +8,7 @@ module Meraki
   class BlockedUrlCategoriesModel < BaseModel
     # How URL categories are applied. Can be 'network default', 'append' or
     # 'override'.
-    # @return [Settings3Enum]
+    # @return [Settings4Enum]
     attr_accessor :settings
 
     # A list of URL categories to block

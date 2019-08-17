@@ -6,21 +6,22 @@
 module Meraki
   # UpdateNetworkSsidModel Model.
   class UpdateNetworkSsidModel < BaseModel
-    # The client-serving radio frequencies. ('Dual band operation', '5 GHz band
-    # only' or 'Dual band operation with Band Steering')
-    # @return [BandSelectionEnum]
-    attr_accessor :band_selection
+    # The name of an SSID
+    # @return [String]
+    attr_accessor :name
 
-    # The minimum bitrate in Mbps. ('1', '2', '5.5', '6', '9', '11', '12', '18',
-    # '24', '36', '48' or '54')
-    # @return [Float]
-    attr_accessor :min_bitrate
+    # Whether or not an SSID is enabled
+    # @return [Boolean]
+    attr_accessor :enabled
 
-    # The RADIUS accounting 802.1x servers to be used for authentication. This
-    # param is only valid if the authMode is 'open-with-radius' or
-    # '8021x-radius' and radiusAccountingEnabled is 'true'
-    # @return [List of RadiusAccountingServerModel]
-    attr_accessor :radius_accounting_servers
+    # The association control method for the SSID ('open', 'psk',
+    # 'open-with-radius', '8021x-meraki' or '8021x-radius')
+    # @return [AuthModeEnum]
+    attr_accessor :auth_mode
+
+    # The psk encryption mode for the SSID ('wpa', 'wep' or 'wpa-eap')
+    # @return [EncryptionModeEnum]
+    attr_accessor :encryption_mode
 
     # The passkey for the SSID. This param is only valid if the authMode is
     # 'psk'
@@ -31,21 +32,6 @@ module Meraki
     # @return [WpaEncryptionModeEnum]
     attr_accessor :wpa_encryption_mode
 
-    # Whether or not an SSID is enabled
-    # @return [Boolean]
-    attr_accessor :enabled
-
-    # This policy determines how authentication requests should be handled in
-    # the event that all of the configured RADIUS servers are unreachable ('Deny
-    # access' or 'Allow access')
-    # @return [RadiusFailoverPolicyEnum]
-    attr_accessor :radius_failover_policy
-
-    # The default VLAN ID used for 'all other APs'. This param is only valid
-    # with 'Bridge mode' and 'Layer 3 roaming'
-    # @return [Integer]
-    attr_accessor :default_vlan_id
-
     # The type of splash page for the SSID ('None', 'Click-through splash page',
     # 'Billing', 'Password-protected with Meraki RADIUS', 'Password-protected
     # with custom RADIUS', 'Password-protected with Active Directory',
@@ -54,20 +40,6 @@ module Meraki
     # attribute is not supported for template children.
     # @return [SplashPageEnum]
     attr_accessor :splash_page
-
-    # The list of tags and VLAN IDs used for VLAN tagging. This param is only
-    # valid with 'Bridge mode', 'Layer 3 roaming'
-    # @return [List of ApTagsAndVlanIdModel]
-    attr_accessor :ap_tags_and_vlan_ids
-
-    # The psk encryption mode for the SSID ('wpa', 'wep' or 'wpa-eap')
-    # @return [EncryptionModeEnum]
-    attr_accessor :encryption_mode
-
-    # The concentrator to use for 'Layer 3 roaming with a concentrator' or
-    # 'VPN'.
-    # @return [String]
-    attr_accessor :concentrator_network_id
 
     # The RADIUS 802.1x servers to be used for authentication. This param is
     # only valid if the authMode is 'open-with-radius' or '8021x-radius'
@@ -80,38 +52,11 @@ module Meraki
     # @return [Boolean]
     attr_accessor :radius_coa_enabled
 
-    # The download bandwidth limit in Kbps. (0 represents no limit.)
-    # @return [Integer]
-    attr_accessor :per_client_bandwidth_limit_down
-
-    # Whether or not RADIUS accounting is enabled. This param is only valid if
-    # the authMode is 'open-with-radius' or '8021x-radius'
-    # @return [Boolean]
-    attr_accessor :radius_accounting_enabled
-
-    # The VLAN ID used for VLAN tagging. This param is only valid with 'Layer 3
-    # roaming with a concentrator' and 'VPN'
-    # @return [Integer]
-    attr_accessor :vlan_id
-
-    # The client IP assignment mode ('NAT mode', 'Bridge mode', 'Layer 3
-    # roaming', 'Layer 3 roaming with a concentrator' or 'VPN')
-    # @return [IpAssignmentModeEnum]
-    attr_accessor :ip_assignment_mode
-
-    # The association control method for the SSID ('open', 'psk',
-    # 'open-with-radius', '8021x-meraki' or '8021x-radius')
-    # @return [AuthModeEnum]
-    attr_accessor :auth_mode
-
-    # Direct trafic to use specific VLANs. This param is only valid with 'Bridge
-    # mode' and 'Layer 3 roaming'
-    # @return [Boolean]
-    attr_accessor :use_vlan_tagging
-
-    # The upload bandwidth limit in Kbps. (0 represents no limit.)
-    # @return [Integer]
-    attr_accessor :per_client_bandwidth_limit_up
+    # This policy determines how authentication requests should be handled in
+    # the event that all of the configured RADIUS servers are unreachable ('Deny
+    # access' or 'Allow access')
+    # @return [RadiusFailoverPolicyEnum]
+    attr_accessor :radius_failover_policy
 
     # This policy determines which RADIUS server will be contacted first in an
     # authentication attempt and the ordering of any necessary retry attempts
@@ -119,9 +64,46 @@ module Meraki
     # @return [RadiusLoadBalancingPolicyEnum]
     attr_accessor :radius_load_balancing_policy
 
-    # The name of an SSID
+    # Whether or not RADIUS accounting is enabled. This param is only valid if
+    # the authMode is 'open-with-radius' or '8021x-radius'
+    # @return [Boolean]
+    attr_accessor :radius_accounting_enabled
+
+    # The RADIUS accounting 802.1x servers to be used for authentication. This
+    # param is only valid if the authMode is 'open-with-radius' or
+    # '8021x-radius' and radiusAccountingEnabled is 'true'
+    # @return [List of RadiusAccountingServerModel]
+    attr_accessor :radius_accounting_servers
+
+    # The client IP assignment mode ('NAT mode', 'Bridge mode', 'Layer 3
+    # roaming', 'Layer 3 roaming with a concentrator' or 'VPN')
+    # @return [IpAssignmentModeEnum]
+    attr_accessor :ip_assignment_mode
+
+    # Direct trafic to use specific VLANs. This param is only valid with 'Bridge
+    # mode' and 'Layer 3 roaming'
+    # @return [Boolean]
+    attr_accessor :use_vlan_tagging
+
+    # The concentrator to use for 'Layer 3 roaming with a concentrator' or
+    # 'VPN'.
     # @return [String]
-    attr_accessor :name
+    attr_accessor :concentrator_network_id
+
+    # The VLAN ID used for VLAN tagging. This param is only valid with 'Layer 3
+    # roaming with a concentrator' and 'VPN'
+    # @return [Integer]
+    attr_accessor :vlan_id
+
+    # The default VLAN ID used for 'all other APs'. This param is only valid
+    # with 'Bridge mode' and 'Layer 3 roaming'
+    # @return [Integer]
+    attr_accessor :default_vlan_id
+
+    # The list of tags and VLAN IDs used for VLAN tagging. This param is only
+    # valid with 'Bridge mode', 'Layer 3 roaming'
+    # @return [List of ApTagsAndVlanIdModel]
+    attr_accessor :ap_tags_and_vlan_ids
 
     # Allow access to a configurable list of IP ranges, which users may access
     # prior to sign-on.
@@ -135,88 +117,106 @@ module Meraki
     # @return [String]
     attr_accessor :walled_garden_ranges
 
+    # The minimum bitrate in Mbps. ('1', '2', '5.5', '6', '9', '11', '12', '18',
+    # '24', '36', '48' or '54')
+    # @return [Float]
+    attr_accessor :min_bitrate
+
+    # The client-serving radio frequencies. ('Dual band operation', '5 GHz band
+    # only' or 'Dual band operation with Band Steering')
+    # @return [BandSelectionEnum]
+    attr_accessor :band_selection
+
+    # The upload bandwidth limit in Kbps. (0 represents no limit.)
+    # @return [Integer]
+    attr_accessor :per_client_bandwidth_limit_up
+
+    # The download bandwidth limit in Kbps. (0 represents no limit.)
+    # @return [Integer]
+    attr_accessor :per_client_bandwidth_limit_down
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['band_selection'] = 'bandSelection'
-      @_hash['min_bitrate'] = 'minBitrate'
-      @_hash['radius_accounting_servers'] = 'radiusAccountingServers'
+      @_hash['name'] = 'name'
+      @_hash['enabled'] = 'enabled'
+      @_hash['auth_mode'] = 'authMode'
+      @_hash['encryption_mode'] = 'encryptionMode'
       @_hash['psk'] = 'psk'
       @_hash['wpa_encryption_mode'] = 'wpaEncryptionMode'
-      @_hash['enabled'] = 'enabled'
-      @_hash['radius_failover_policy'] = 'radiusFailoverPolicy'
-      @_hash['default_vlan_id'] = 'defaultVlanId'
       @_hash['splash_page'] = 'splashPage'
-      @_hash['ap_tags_and_vlan_ids'] = 'apTagsAndVlanIds'
-      @_hash['encryption_mode'] = 'encryptionMode'
-      @_hash['concentrator_network_id'] = 'concentratorNetworkId'
       @_hash['radius_servers'] = 'radiusServers'
       @_hash['radius_coa_enabled'] = 'radiusCoaEnabled'
-      @_hash['per_client_bandwidth_limit_down'] =
-        'perClientBandwidthLimitDown'
-      @_hash['radius_accounting_enabled'] = 'radiusAccountingEnabled'
-      @_hash['vlan_id'] = 'vlanId'
-      @_hash['ip_assignment_mode'] = 'ipAssignmentMode'
-      @_hash['auth_mode'] = 'authMode'
-      @_hash['use_vlan_tagging'] = 'useVlanTagging'
-      @_hash['per_client_bandwidth_limit_up'] = 'perClientBandwidthLimitUp'
+      @_hash['radius_failover_policy'] = 'radiusFailoverPolicy'
       @_hash['radius_load_balancing_policy'] = 'radiusLoadBalancingPolicy'
-      @_hash['name'] = 'name'
+      @_hash['radius_accounting_enabled'] = 'radiusAccountingEnabled'
+      @_hash['radius_accounting_servers'] = 'radiusAccountingServers'
+      @_hash['ip_assignment_mode'] = 'ipAssignmentMode'
+      @_hash['use_vlan_tagging'] = 'useVlanTagging'
+      @_hash['concentrator_network_id'] = 'concentratorNetworkId'
+      @_hash['vlan_id'] = 'vlanId'
+      @_hash['default_vlan_id'] = 'defaultVlanId'
+      @_hash['ap_tags_and_vlan_ids'] = 'apTagsAndVlanIds'
       @_hash['walled_garden_enabled'] = 'walledGardenEnabled'
       @_hash['walled_garden_ranges'] = 'walledGardenRanges'
+      @_hash['min_bitrate'] = 'minBitrate'
+      @_hash['band_selection'] = 'bandSelection'
+      @_hash['per_client_bandwidth_limit_up'] = 'perClientBandwidthLimitUp'
+      @_hash['per_client_bandwidth_limit_down'] =
+        'perClientBandwidthLimitDown'
       @_hash
     end
 
-    def initialize(band_selection = nil,
-                   min_bitrate = nil,
-                   radius_accounting_servers = nil,
+    def initialize(name = nil,
+                   enabled = nil,
+                   auth_mode = nil,
+                   encryption_mode = nil,
                    psk = nil,
                    wpa_encryption_mode = nil,
-                   enabled = nil,
-                   radius_failover_policy = nil,
-                   default_vlan_id = nil,
                    splash_page = nil,
-                   ap_tags_and_vlan_ids = nil,
-                   encryption_mode = nil,
-                   concentrator_network_id = nil,
                    radius_servers = nil,
                    radius_coa_enabled = nil,
-                   per_client_bandwidth_limit_down = nil,
-                   radius_accounting_enabled = nil,
-                   vlan_id = nil,
-                   ip_assignment_mode = nil,
-                   auth_mode = nil,
-                   use_vlan_tagging = nil,
-                   per_client_bandwidth_limit_up = nil,
+                   radius_failover_policy = nil,
                    radius_load_balancing_policy = nil,
-                   name = nil,
+                   radius_accounting_enabled = nil,
+                   radius_accounting_servers = nil,
+                   ip_assignment_mode = nil,
+                   use_vlan_tagging = nil,
+                   concentrator_network_id = nil,
+                   vlan_id = nil,
+                   default_vlan_id = nil,
+                   ap_tags_and_vlan_ids = nil,
                    walled_garden_enabled = nil,
-                   walled_garden_ranges = nil)
-      @band_selection = band_selection
-      @min_bitrate = min_bitrate
-      @radius_accounting_servers = radius_accounting_servers
+                   walled_garden_ranges = nil,
+                   min_bitrate = nil,
+                   band_selection = nil,
+                   per_client_bandwidth_limit_up = nil,
+                   per_client_bandwidth_limit_down = nil)
+      @name = name
+      @enabled = enabled
+      @auth_mode = auth_mode
+      @encryption_mode = encryption_mode
       @psk = psk
       @wpa_encryption_mode = wpa_encryption_mode
-      @enabled = enabled
-      @radius_failover_policy = radius_failover_policy
-      @default_vlan_id = default_vlan_id
       @splash_page = splash_page
-      @ap_tags_and_vlan_ids = ap_tags_and_vlan_ids
-      @encryption_mode = encryption_mode
-      @concentrator_network_id = concentrator_network_id
       @radius_servers = radius_servers
       @radius_coa_enabled = radius_coa_enabled
-      @per_client_bandwidth_limit_down = per_client_bandwidth_limit_down
-      @radius_accounting_enabled = radius_accounting_enabled
-      @vlan_id = vlan_id
-      @ip_assignment_mode = ip_assignment_mode
-      @auth_mode = auth_mode
-      @use_vlan_tagging = use_vlan_tagging
-      @per_client_bandwidth_limit_up = per_client_bandwidth_limit_up
+      @radius_failover_policy = radius_failover_policy
       @radius_load_balancing_policy = radius_load_balancing_policy
-      @name = name
+      @radius_accounting_enabled = radius_accounting_enabled
+      @radius_accounting_servers = radius_accounting_servers
+      @ip_assignment_mode = ip_assignment_mode
+      @use_vlan_tagging = use_vlan_tagging
+      @concentrator_network_id = concentrator_network_id
+      @vlan_id = vlan_id
+      @default_vlan_id = default_vlan_id
+      @ap_tags_and_vlan_ids = ap_tags_and_vlan_ids
       @walled_garden_enabled = walled_garden_enabled
       @walled_garden_ranges = walled_garden_ranges
+      @min_bitrate = min_bitrate
+      @band_selection = band_selection
+      @per_client_bandwidth_limit_up = per_client_bandwidth_limit_up
+      @per_client_bandwidth_limit_down = per_client_bandwidth_limit_down
     end
 
     # Creates an instance of the object from a hash.
@@ -224,32 +224,13 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
-      band_selection = hash['bandSelection']
-      min_bitrate = hash['minBitrate']
-      # Parameter is an array, so we need to iterate through it
-      radius_accounting_servers = nil
-      unless hash['radiusAccountingServers'].nil?
-        radius_accounting_servers = []
-        hash['radiusAccountingServers'].each do |structure|
-          radius_accounting_servers << (RadiusAccountingServerModel.from_hash(structure) if structure)
-        end
-      end
+      name = hash['name']
+      enabled = hash['enabled']
+      auth_mode = hash['authMode']
+      encryption_mode = hash['encryptionMode']
       psk = hash['psk']
       wpa_encryption_mode = hash['wpaEncryptionMode']
-      enabled = hash['enabled']
-      radius_failover_policy = hash['radiusFailoverPolicy']
-      default_vlan_id = hash['defaultVlanId']
       splash_page = hash['splashPage']
-      # Parameter is an array, so we need to iterate through it
-      ap_tags_and_vlan_ids = nil
-      unless hash['apTagsAndVlanIds'].nil?
-        ap_tags_and_vlan_ids = []
-        hash['apTagsAndVlanIds'].each do |structure|
-          ap_tags_and_vlan_ids << (ApTagsAndVlanIdModel.from_hash(structure) if structure)
-        end
-      end
-      encryption_mode = hash['encryptionMode']
-      concentrator_network_id = hash['concentratorNetworkId']
       # Parameter is an array, so we need to iterate through it
       radius_servers = nil
       unless hash['radiusServers'].nil?
@@ -259,44 +240,63 @@ module Meraki
         end
       end
       radius_coa_enabled = hash['radiusCoaEnabled']
-      per_client_bandwidth_limit_down = hash['perClientBandwidthLimitDown']
-      radius_accounting_enabled = hash['radiusAccountingEnabled']
-      vlan_id = hash['vlanId']
-      ip_assignment_mode = hash['ipAssignmentMode']
-      auth_mode = hash['authMode']
-      use_vlan_tagging = hash['useVlanTagging']
-      per_client_bandwidth_limit_up = hash['perClientBandwidthLimitUp']
+      radius_failover_policy = hash['radiusFailoverPolicy']
       radius_load_balancing_policy = hash['radiusLoadBalancingPolicy']
-      name = hash['name']
+      radius_accounting_enabled = hash['radiusAccountingEnabled']
+      # Parameter is an array, so we need to iterate through it
+      radius_accounting_servers = nil
+      unless hash['radiusAccountingServers'].nil?
+        radius_accounting_servers = []
+        hash['radiusAccountingServers'].each do |structure|
+          radius_accounting_servers << (RadiusAccountingServerModel.from_hash(structure) if structure)
+        end
+      end
+      ip_assignment_mode = hash['ipAssignmentMode']
+      use_vlan_tagging = hash['useVlanTagging']
+      concentrator_network_id = hash['concentratorNetworkId']
+      vlan_id = hash['vlanId']
+      default_vlan_id = hash['defaultVlanId']
+      # Parameter is an array, so we need to iterate through it
+      ap_tags_and_vlan_ids = nil
+      unless hash['apTagsAndVlanIds'].nil?
+        ap_tags_and_vlan_ids = []
+        hash['apTagsAndVlanIds'].each do |structure|
+          ap_tags_and_vlan_ids << (ApTagsAndVlanIdModel.from_hash(structure) if structure)
+        end
+      end
       walled_garden_enabled = hash['walledGardenEnabled']
       walled_garden_ranges = hash['walledGardenRanges']
+      min_bitrate = hash['minBitrate']
+      band_selection = hash['bandSelection']
+      per_client_bandwidth_limit_up = hash['perClientBandwidthLimitUp']
+      per_client_bandwidth_limit_down = hash['perClientBandwidthLimitDown']
 
       # Create object from extracted values.
-      UpdateNetworkSsidModel.new(band_selection,
-                                 min_bitrate,
-                                 radius_accounting_servers,
+      UpdateNetworkSsidModel.new(name,
+                                 enabled,
+                                 auth_mode,
+                                 encryption_mode,
                                  psk,
                                  wpa_encryption_mode,
-                                 enabled,
-                                 radius_failover_policy,
-                                 default_vlan_id,
                                  splash_page,
-                                 ap_tags_and_vlan_ids,
-                                 encryption_mode,
-                                 concentrator_network_id,
                                  radius_servers,
                                  radius_coa_enabled,
-                                 per_client_bandwidth_limit_down,
-                                 radius_accounting_enabled,
-                                 vlan_id,
-                                 ip_assignment_mode,
-                                 auth_mode,
-                                 use_vlan_tagging,
-                                 per_client_bandwidth_limit_up,
+                                 radius_failover_policy,
                                  radius_load_balancing_policy,
-                                 name,
+                                 radius_accounting_enabled,
+                                 radius_accounting_servers,
+                                 ip_assignment_mode,
+                                 use_vlan_tagging,
+                                 concentrator_network_id,
+                                 vlan_id,
+                                 default_vlan_id,
+                                 ap_tags_and_vlan_ids,
                                  walled_garden_enabled,
-                                 walled_garden_ranges)
+                                 walled_garden_ranges,
+                                 min_bitrate,
+                                 band_selection,
+                                 per_client_bandwidth_limit_up,
+                                 per_client_bandwidth_limit_down)
     end
   end
 end

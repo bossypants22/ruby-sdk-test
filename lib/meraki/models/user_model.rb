@@ -6,26 +6,26 @@
 module Meraki
   # UserModel Model.
   class UserModel < BaseModel
-    # The passphrase for the SNMP user. Required.
-    # @return [String]
-    attr_accessor :passphrase
-
     # The username for the SNMP user. Required.
     # @return [String]
     attr_accessor :username
 
+    # The passphrase for the SNMP user. Required.
+    # @return [String]
+    attr_accessor :passphrase
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['passphrase'] = 'passphrase'
       @_hash['username'] = 'username'
+      @_hash['passphrase'] = 'passphrase'
       @_hash
     end
 
-    def initialize(passphrase = nil,
-                   username = nil)
-      @passphrase = passphrase
+    def initialize(username = nil,
+                   passphrase = nil)
       @username = username
+      @passphrase = passphrase
     end
 
     # Creates an instance of the object from a hash.
@@ -33,12 +33,12 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
-      passphrase = hash['passphrase']
       username = hash['username']
+      passphrase = hash['passphrase']
 
       # Create object from extracted values.
-      UserModel.new(passphrase,
-                    username)
+      UserModel.new(username,
+                    passphrase)
     end
   end
 end

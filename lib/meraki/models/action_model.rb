@@ -10,20 +10,20 @@ module Meraki
     # @return [String]
     attr_accessor :resource
 
-    # The body of the action
-    # @return [Object]
-    attr_accessor :body
-
     # The operation to be used
     # @return [String]
     attr_accessor :operation
+
+    # The body of the action
+    # @return [Object]
+    attr_accessor :body
 
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
       @_hash['resource'] = 'resource'
-      @_hash['body'] = 'body'
       @_hash['operation'] = 'operation'
+      @_hash['body'] = 'body'
       @_hash
     end
 
@@ -31,8 +31,8 @@ module Meraki
                    operation = nil,
                    body = nil)
       @resource = resource
-      @body = body
       @operation = operation
+      @body = body
     end
 
     # Creates an instance of the object from a hash.

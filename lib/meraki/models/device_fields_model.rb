@@ -6,26 +6,26 @@
 module Meraki
   # The new fields of the device. Each field of this object is optional.
   class DeviceFieldsModel < BaseModel
-    # New notes for the device
-    # @return [String]
-    attr_accessor :notes
-
     # New name for the device
     # @return [String]
     attr_accessor :name
 
+    # New notes for the device
+    # @return [String]
+    attr_accessor :notes
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
-      @_hash['notes'] = 'notes'
       @_hash['name'] = 'name'
+      @_hash['notes'] = 'notes'
       @_hash
     end
 
-    def initialize(notes = nil,
-                   name = nil)
-      @notes = notes
+    def initialize(name = nil,
+                   notes = nil)
       @name = name
+      @notes = notes
     end
 
     # Creates an instance of the object from a hash.
@@ -33,12 +33,12 @@ module Meraki
       return nil unless hash
 
       # Extract variables from the hash.
-      notes = hash['notes']
       name = hash['name']
+      notes = hash['notes']
 
       # Create object from extracted values.
-      DeviceFieldsModel.new(notes,
-                            name)
+      DeviceFieldsModel.new(name,
+                            notes)
     end
   end
 end

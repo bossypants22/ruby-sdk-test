@@ -4,14 +4,18 @@
 # ( https://apimatic.io ).
 
 module Meraki
-  # One of "delete" or "restrict processing"
+  # The signature type for the custom pie chart item. Can be one of 'host',
+  # 'port' or 'ipRange'.
   class Type7Enum
     TYPE7_ENUM = [
-      # TODO: Write general description for DELETE
-      DELETE = 'delete'.freeze,
+      # TODO: Write general description for HOST
+      HOST = 'host'.freeze,
 
-      # TODO: Write general description for ENUM_RESTRICT_PROCESSING
-      ENUM_RESTRICT_PROCESSING = 'restrict processing'.freeze
+      # TODO: Write general description for PORT
+      PORT = 'port'.freeze,
+
+      # TODO: Write general description for IPRANGE
+      IPRANGE = 'ipRange'.freeze
     ].freeze
   end
 end
