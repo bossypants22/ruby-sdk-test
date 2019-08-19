@@ -180,15 +180,14 @@ module Meraki
       validate_response(_context)
     end
 
-    # Claim a device, license key, or order into an organization. When claiming
-    # by order, all devices and licenses in the order will be claimed; licenses
-    # will be added to the organization and devices will be placed in the
-    # organization's inventory. These three types of claims are mutually
-    # exclusive and cannot be performed in one request.
+    # Claim a list of devices, licenses, and/or orders into an organization.
+    # When claiming by order, all devices and licenses in the order will be
+    # claimed; licenses will be added to the organization and devices will be
+    # placed in the organization's inventory.
     # @param [String] organization_id Required parameter: Example:
     # @param [ClaimOrganizationModel] claim_organization Optional parameter:
     # Example:
-    # @return void response from the API call
+    # @return Mixed response from the API call
     def claim_organization(options = {})
       # Validate required parameters.
       validate_parameters(
@@ -205,6 +204,7 @@ module Meraki
       _query_url = APIHelper.clean_url _query_builder
       # Prepare headers.
       _headers = {
+        'accept' => 'application/json',
         'content-type' => 'application/json; charset=utf-8'
       }
       # Prepare and execute HttpRequest.
@@ -216,6 +216,11 @@ module Meraki
       CustomHeaderAuth.apply(_request)
       _context = execute_request(_request)
       validate_response(_context)
+      # Return appropriate response type.
+      decoded = APIHelper.json_deserialize(_context.response.raw_body) unless
+        _context.response.raw_body.nil? ||
+        _context.response.raw_body.to_s.strip.empty?
+      decoded
     end
 
     # Create a new organization by cloning the addressed organization
