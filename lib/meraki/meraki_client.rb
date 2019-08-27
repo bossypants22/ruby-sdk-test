@@ -162,6 +162,12 @@ module Meraki
       MXPortForwardingRulesController.instance
     end
 
+    # Singleton access to mx_warm_spare_settings controller.
+    # @return [MXWarmSpareSettingsController] Returns the controller instance.
+    def mx_warm_spare_settings
+      MXWarmSpareSettingsController.instance
+    end
+
     # Singleton access to malware_settings controller.
     # @return [MalwareSettingsController] Returns the controller instance.
     def malware_settings

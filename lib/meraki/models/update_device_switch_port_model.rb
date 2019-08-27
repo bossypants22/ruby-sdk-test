@@ -22,7 +22,8 @@ module Meraki
     # @return [String]
     attr_accessor :type
 
-    # The VLAN of the switch port
+    # The VLAN of the switch port. A null value will clear the value set for
+    # trunk ports.
     # @return [Integer]
     attr_accessor :vlan
 

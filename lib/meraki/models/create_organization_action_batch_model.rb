@@ -7,12 +7,13 @@ module Meraki
   # CreateOrganizationActionBatchModel Model.
   class CreateOrganizationActionBatchModel < BaseModel
     # Set to true for immediate execution. Set to false if the action should be
-    # previewed before executing.
+    # previewed before executing. This property cannot be unset once it is true.
+    # Defaults to false.
     # @return [Boolean]
     attr_accessor :confirmed
 
-    # Force the batch to run synchronous. There can be at most 20 actions in
-    # synchronous batch.
+    # Set to true to force the batch to run synchronous. There can be at most 20
+    # actions in synchronous batch. Defaults to false.
     # @return [Boolean]
     attr_accessor :synchronous
 
