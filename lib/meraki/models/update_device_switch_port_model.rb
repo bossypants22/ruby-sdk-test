@@ -65,6 +65,11 @@ module Meraki
     # @return [String]
     attr_accessor :port_schedule_id
 
+    # The action to take when Unidirectional Link is detected (Alert only,
+    # Enforce). Default configuration is Alert only.
+    # @return [UdldEnum]
+    attr_accessor :udld
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
@@ -82,6 +87,7 @@ module Meraki
       @_hash['access_policy_number'] = 'accessPolicyNumber'
       @_hash['link_negotiation'] = 'linkNegotiation'
       @_hash['port_schedule_id'] = 'portScheduleId'
+      @_hash['udld'] = 'udld'
       @_hash
     end
 
@@ -98,7 +104,8 @@ module Meraki
                    stp_guard = nil,
                    access_policy_number = nil,
                    link_negotiation = nil,
-                   port_schedule_id = nil)
+                   port_schedule_id = nil,
+                   udld = nil)
       @name = name
       @tags = tags
       @enabled = enabled
@@ -113,6 +120,7 @@ module Meraki
       @access_policy_number = access_policy_number
       @link_negotiation = link_negotiation
       @port_schedule_id = port_schedule_id
+      @udld = udld
     end
 
     # Creates an instance of the object from a hash.
@@ -134,6 +142,7 @@ module Meraki
       access_policy_number = hash['accessPolicyNumber']
       link_negotiation = hash['linkNegotiation']
       port_schedule_id = hash['portScheduleId']
+      udld = hash['udld']
 
       # Create object from extracted values.
       UpdateDeviceSwitchPortModel.new(name,
@@ -149,7 +158,8 @@ module Meraki
                                       stp_guard,
                                       access_policy_number,
                                       link_negotiation,
-                                      port_schedule_id)
+                                      port_schedule_id,
+                                      udld)
     end
   end
 end
