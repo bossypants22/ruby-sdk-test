@@ -62,6 +62,9 @@ module Meraki
     # information will be fetched. If specifying timespan, do not specify
     # parameters t0 and t1. The value must be in seconds and be less than or
     # equal to 7 days. The default is 1 hour.
+    # @param [ObjectTypeEnum] object_type Optional parameter: [optional] The
+    # object type for which analytics will be retrieved. The default object type
+    # is person. The available types are [person, vehicle].
     # @return Mixed response from the API call
     def get_device_camera_analytics_overview(options = {})
       # Validate required parameters.
@@ -81,7 +84,8 @@ module Meraki
         {
           't0' => options['t0'],
           't1' => options['t1'],
-          'timespan' => options['timespan']
+          'timespan' => options['timespan'],
+          'objectType' => options['object_type']
         },
         array_serialization: Configuration.array_serialization
       )
@@ -107,20 +111,30 @@ module Meraki
 
     # Returns most recent record for analytics zones
     # @param [String] serial Required parameter: Example:
+    # @param [ObjectTypeEnum] object_type Optional parameter: [optional] The
+    # object type for which analytics will be retrieved. The default object type
+    # is person. The available types are [person, vehicle].
     # @return Mixed response from the API call
-    def get_device_camera_analytics_recent(serial)
+    def get_device_camera_analytics_recent(options = {})
       # Validate required parameters.
       validate_parameters(
-        'serial' => serial
+        'serial' => options['serial']
       )
       # Prepare query url.
       _path_url = '/devices/{serial}/camera/analytics/recent'
       _path_url = APIHelper.append_url_with_template_parameters(
         _path_url,
-        'serial' => serial
+        'serial' => options['serial']
       )
       _query_builder = Configuration.base_uri.dup
       _query_builder << _path_url
+      _query_builder = APIHelper.append_url_with_query_parameters(
+        _query_builder,
+        {
+          'objectType' => options['object_type']
+        },
+        array_serialization: Configuration.array_serialization
+      )
       _query_url = APIHelper.clean_url _query_builder
       # Prepare headers.
       _headers = {
@@ -191,6 +205,9 @@ module Meraki
     # @param [Integer] resolution Optional parameter: The time resolution in
     # seconds for returned data. The valid resolutions are: 60. The default is
     # 60.
+    # @param [ObjectTypeEnum] object_type Optional parameter: [optional] The
+    # object type for which analytics will be retrieved. The default object type
+    # is person. The available types are [person, vehicle].
     # @return Mixed response from the API call
     def get_device_camera_analytics_zone_history(options = {})
       # Validate required parameters.
@@ -213,7 +230,8 @@ module Meraki
           't0' => options['t0'],
           't1' => options['t1'],
           'timespan' => options['timespan'],
-          'resolution' => options['resolution']
+          'resolution' => options['resolution'],
+          'objectType' => options['object_type']
         },
         array_serialization: Configuration.array_serialization
       )
