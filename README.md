@@ -27,7 +27,7 @@ Alternatively, you can build and install the gem manually:
 
   1. From terminal/cmd navigate to the root directory of the SDK.
   2. Run the build command: `gem build meraki.gemspec`
-  3. Run the install command: `gem install ./meraki-1.6.0.gem`
+  3. Run the install command: `gem install ./meraki-1.7.0.gem`
 
 Note: You will need to have internet access for this step.
 
