@@ -70,6 +70,19 @@ module Meraki
     # @return [UdldEnum]
     attr_accessor :udld
 
+    # Only devices with MAC addresses specified in this list will have access to
+    # this port.  Up to 20 MAC addresses can be defined.
+    # @return [List of String]
+    attr_accessor :mac_whitelist
+
+    # The initial list of MAC addresses for sticky Mac whitelist.
+    # @return [List of String]
+    attr_accessor :sticky_mac_whitelist
+
+    # The maximum number of MAC addresses for sticky MAC whitelist.
+    # @return [Integer]
+    attr_accessor :sticky_mac_whitelist_limit
+
     # A mapping from model property names to API property names.
     def self.names
       @_hash = {} if @_hash.nil?
@@ -88,6 +101,9 @@ module Meraki
       @_hash['link_negotiation'] = 'linkNegotiation'
       @_hash['port_schedule_id'] = 'portScheduleId'
       @_hash['udld'] = 'udld'
+      @_hash['mac_whitelist'] = 'macWhitelist'
+      @_hash['sticky_mac_whitelist'] = 'stickyMacWhitelist'
+      @_hash['sticky_mac_whitelist_limit'] = 'stickyMacWhitelistLimit'
       @_hash
     end
 
@@ -105,7 +121,10 @@ module Meraki
                    access_policy_number = nil,
                    link_negotiation = nil,
                    port_schedule_id = nil,
-                   udld = nil)
+                   udld = nil,
+                   mac_whitelist = nil,
+                   sticky_mac_whitelist = nil,
+                   sticky_mac_whitelist_limit = nil)
       @name = name
       @tags = tags
       @enabled = enabled
@@ -121,6 +140,9 @@ module Meraki
       @link_negotiation = link_negotiation
       @port_schedule_id = port_schedule_id
       @udld = udld
+      @mac_whitelist = mac_whitelist
+      @sticky_mac_whitelist = sticky_mac_whitelist
+      @sticky_mac_whitelist_limit = sticky_mac_whitelist_limit
     end
 
     # Creates an instance of the object from a hash.
@@ -143,6 +165,9 @@ module Meraki
       link_negotiation = hash['linkNegotiation']
       port_schedule_id = hash['portScheduleId']
       udld = hash['udld']
+      mac_whitelist = hash['macWhitelist']
+      sticky_mac_whitelist = hash['stickyMacWhitelist']
+      sticky_mac_whitelist_limit = hash['stickyMacWhitelistLimit']
 
       # Create object from extracted values.
       UpdateDeviceSwitchPortModel.new(name,
@@ -159,7 +184,10 @@ module Meraki
                                       access_policy_number,
                                       link_negotiation,
                                       port_schedule_id,
-                                      udld)
+                                      udld,
+                                      mac_whitelist,
+                                      sticky_mac_whitelist,
+                                      sticky_mac_whitelist_limit)
     end
   end
 end

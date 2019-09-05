@@ -72,12 +72,6 @@ module Meraki
       DevicesController.instance
     end
 
-    # Singleton access to events controller.
-    # @return [EventsController] Returns the controller instance.
-    def events
-      EventsController.instance
-    end
-
     # Singleton access to firewalled_services controller.
     # @return [FirewalledServicesController] Returns the controller instance.
     def firewalled_services
