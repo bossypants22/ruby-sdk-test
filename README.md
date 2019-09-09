@@ -73,9 +73,9 @@ This client library is a Ruby gem which can be compiled and used in your Ruby an
 
 1. Open the command line interface or the terminal and navigate to the folder containing the source code.
 2. Run ``` gem build meraki.gemspec ``` to build the gem.
-3. Once built, the gem can be installed on the current work environment using ``` gem install meraki-1.11.0.gem ```
+3. Once built, the gem can be installed on the current work environment using ``` gem install meraki-1.12.0.gem ```
 
-![Building Gem](https://apidocs.io/illustration/ruby?step=buildSDK&workspaceFolder=Meraki-Ruby&workspaceName=Meraki-Ruby&projectName=meraki&gemName=meraki&gemVer=1.11.0)
+![Building Gem](https://apidocs.io/illustration/ruby?step=buildSDK&workspaceFolder=Meraki-Ruby&workspaceName=Meraki-Ruby&projectName=meraki&gemName=meraki&gemVer=1.12.0)
 
 ## How to Use
 
@@ -85,41 +85,41 @@ The following section explains how to use the Meraki Ruby Gem in a new Rails pro
 
 Close any existing projects in RubyMine&trade; by selecting ``` File -> Close Project ```. Next, click on ``` Create New Project ``` to create a new project from scratch.
 
-![Create a new project in RubyMine](https://apidocs.io/illustration/ruby?step=createNewProject0&workspaceFolder=Meraki-Ruby&workspaceName=Meraki&projectName=meraki&gemName=meraki&gemVer=1.11.0)
+![Create a new project in RubyMine](https://apidocs.io/illustration/ruby?step=createNewProject0&workspaceFolder=Meraki-Ruby&workspaceName=Meraki&projectName=meraki&gemName=meraki&gemVer=1.12.0)
 
 Next, provide ``` TestApp ``` as the project name, choose ``` Rails Application ``` as the project type, and click ``` OK ```.
 
-![Create a new Rails Application in RubyMine - step 1](https://apidocs.io/illustration/ruby?step=createNewProject1&workspaceFolder=Meraki-Ruby&workspaceName=Meraki&projectName=meraki&gemName=meraki&gemVer=1.11.0)
+![Create a new Rails Application in RubyMine - step 1](https://apidocs.io/illustration/ruby?step=createNewProject1&workspaceFolder=Meraki-Ruby&workspaceName=Meraki&projectName=meraki&gemName=meraki&gemVer=1.12.0)
 
 In the next dialog make sure that correct *Ruby SDK* is being used (minimum 2.0.0) and click ``` OK ```.
 
-![Create a new Rails Application in RubyMine - step 2](https://apidocs.io/illustration/ruby?step=createNewProject2&workspaceFolder=Meraki-Ruby&workspaceName=Meraki&projectName=meraki&gemName=meraki&gemVer=1.11.0)
+![Create a new Rails Application in RubyMine - step 2](https://apidocs.io/illustration/ruby?step=createNewProject2&workspaceFolder=Meraki-Ruby&workspaceName=Meraki&projectName=meraki&gemName=meraki&gemVer=1.12.0)
 
 This will create a new Rails Application project with an existing set of files and folder.
 
 ### 2. Add reference of the gem
 
-In order to use the Meraki gem in the new project we must add a gem reference. Locate the ```Gemfile``` in the *Project Explorer* window under the ``` TestApp ``` project node. The file contains references to all gems being used in the project. Here, add the reference to the library gem by adding the following line: ``` gem 'meraki', '~> 1.11.0' ```
+In order to use the Meraki gem in the new project we must add a gem reference. Locate the ```Gemfile``` in the *Project Explorer* window under the ``` TestApp ``` project node. The file contains references to all gems being used in the project. Here, add the reference to the library gem by adding the following line: ``` gem 'meraki', '~> 1.12.0' ```
 
-![Add references of the Gemfile](https://apidocs.io/illustration/ruby?step=addReference&workspaceFolder=Meraki-Ruby&workspaceName=Meraki&projectName=meraki&gemName=meraki&gemVer=1.11.0)
+![Add references of the Gemfile](https://apidocs.io/illustration/ruby?step=addReference&workspaceFolder=Meraki-Ruby&workspaceName=Meraki&projectName=meraki&gemName=meraki&gemVer=1.12.0)
 
 ### 3. Adding a new Rails Controller
 
 Once the ``` TestApp ``` project is created, a folder named ``` controllers ``` will be visible in the *Project Explorer* under the following path: ``` TestApp > app > controllers ```. Right click on this folder and select ``` New -> Run Rails Generator... ```.
 
-![Run Rails Generator on Controllers Folder](https://apidocs.io/illustration/ruby?step=addCode0&workspaceFolder=Meraki-Ruby&workspaceName=Meraki&projectName=meraki&gemName=meraki&gemVer=1.11.0)
+![Run Rails Generator on Controllers Folder](https://apidocs.io/illustration/ruby?step=addCode0&workspaceFolder=Meraki-Ruby&workspaceName=Meraki&projectName=meraki&gemName=meraki&gemVer=1.12.0)
 
 Selecting the said option will popup a small window where the generator names are displayed. Here, select the ``` controller ``` template.
 
-![Create a new Controller](https://apidocs.io/illustration/ruby?step=addCode1&workspaceFolder=Meraki-Ruby&workspaceName=Meraki&projectName=meraki&gemName=meraki&gemVer=1.11.0)
+![Create a new Controller](https://apidocs.io/illustration/ruby?step=addCode1&workspaceFolder=Meraki-Ruby&workspaceName=Meraki&projectName=meraki&gemName=meraki&gemVer=1.12.0)
 
 Next, a popup window will ask you for a Controller name and included Actions. For controller name provide ``` Hello ``` and include an action named ``` Index ``` and click ``` OK ```.
 
-![Add a new Controller](https://apidocs.io/illustration/ruby?step=addCode2&workspaceFolder=Meraki-Ruby&workspaceName=Meraki&projectName=meraki&gemName=meraki&gemVer=1.11.0)
+![Add a new Controller](https://apidocs.io/illustration/ruby?step=addCode2&workspaceFolder=Meraki-Ruby&workspaceName=Meraki&projectName=meraki&gemName=meraki&gemVer=1.12.0)
 
 A new controller class anmed ``` HelloController ``` will be created in a file named ``` hello_controller.rb ``` containing a method named ``` Index ```. In this method, add code for initialization and a sample for its usage.
 
-![Initialize the library](https://apidocs.io/illustration/ruby?step=addCode3&workspaceFolder=Meraki-Ruby&workspaceName=Meraki&projectName=meraki&gemName=meraki&gemVer=1.11.0)
+![Initialize the library](https://apidocs.io/illustration/ruby?step=addCode3&workspaceFolder=Meraki-Ruby&workspaceName=Meraki&projectName=meraki&gemName=meraki&gemVer=1.12.0)
 
 ## How to Test
 
@@ -153,7 +153,7 @@ client = Meraki::MerakiClient.new(
 
 The added initlization code can be debugged by putting a breakpoint in the ``` Index ``` method and running the project in debug mode by selecting ``` Run -> Debug 'Development: TestApp' ```.
 
-![Debug the TestApp](https://apidocs.io/illustration/ruby?step=addCode4&workspaceFolder=Meraki%20Dashboard%20API-Ruby&workspaceName=Meraki&projectName=meraki&gemName=meraki&gemVer=1.11.0&initLine=client%2520%253D%2520MerakiClient.new%2528%2527x_cisco_meraki_api_key%2527%2529)
+![Debug the TestApp](https://apidocs.io/illustration/ruby?step=addCode4&workspaceFolder=Meraki%20Dashboard%20API-Ruby&workspaceName=Meraki&projectName=meraki&gemName=meraki&gemVer=1.12.0&initLine=client%2520%253D%2520MerakiClient.new%2528%2527x_cisco_meraki_api_key%2527%2529)
 
 
 
@@ -269,10 +269,10 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 34
+timespan = 66
 collect['timespan'] = timespan
 
-per_page = 34
+per_page = 66
 collect['per_page'] = per_page
 
 starting_after = 'startingAfter'
@@ -290,7 +290,7 @@ collect['path'] = path
 method = 'method'
 collect['method'] = method
 
-response_code = 34
+response_code = 66
 collect['response_code'] = response_code
 
 
@@ -734,7 +734,7 @@ collect = Hash.new
 network_id = 'networkId'
 collect['network_id'] = network_id
 
-per_page = 34
+per_page = 24
 collect['per_page'] = per_page
 
 starting_after = 'startingAfter'
@@ -743,7 +743,7 @@ collect['starting_after'] = starting_after
 ending_before = 'endingBefore'
 collect['ending_before'] = ending_before
 
-timespan = 34
+timespan = 24
 collect['timespan'] = timespan
 
 include_connectivity_history = false
@@ -788,7 +788,7 @@ collect['bluetooth_client_id'] = bluetooth_client_id
 include_connectivity_history = false
 collect['include_connectivity_history'] = include_connectivity_history
 
-connectivity_history_timespan = 34
+connectivity_history_timespan = 24
 collect['connectivity_history_timespan'] = connectivity_history_timespan
 
 
@@ -926,7 +926,7 @@ collect['serial'] = serial
 t0 = 't0'
 collect['t0'] = t0
 
-timespan = 34
+timespan = 24
 collect['timespan'] = timespan
 
 
@@ -967,10 +967,10 @@ collect['network_id'] = network_id
 t0 = 't0'
 collect['t0'] = t0
 
-timespan = 34
+timespan = 24
 collect['timespan'] = timespan
 
-per_page = 34
+per_page = 24
 collect['per_page'] = per_page
 
 starting_after = 'startingAfter'
@@ -1084,7 +1084,7 @@ collect['network_id'] = network_id
 client_id = 'clientId'
 collect['client_id'] = client_id
 
-per_page = 34
+per_page = 24
 collect['per_page'] = per_page
 
 starting_after = 'startingAfter'
@@ -1137,10 +1137,10 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 34
+timespan = 24
 collect['timespan'] = timespan
 
-resolution = 34
+resolution = 24
 collect['resolution'] = resolution
 
 
@@ -1324,7 +1324,7 @@ collect['network_id'] = network_id
 client_id = 'clientId'
 collect['client_id'] = client_id
 
-per_page = 247
+per_page = 24
 collect['per_page'] = per_page
 
 starting_after = 'startingAfter'
@@ -1766,7 +1766,7 @@ collect['network_id'] = network_id
 serial = 'serial'
 collect['serial'] = serial
 
-timespan = 247
+timespan = 24
 collect['timespan'] = timespan
 
 
@@ -1818,10 +1818,10 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 247
+timespan = 24
 collect['timespan'] = timespan
 
-resolution = 247
+resolution = 24
 collect['resolution'] = resolution
 
 uplink = 'uplink'
@@ -1996,7 +1996,7 @@ collect = Hash.new
 organization_id = 'organizationId'
 collect['organization_id'] = organization_id
 
-per_page = 247
+per_page = 24
 collect['per_page'] = per_page
 
 starting_after = 'startingAfter'
@@ -2833,7 +2833,7 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 247
+timespan = 116
 collect['timespan'] = timespan
 
 object_type = Meraki::ObjectTypeEnum::PERSON
@@ -2944,10 +2944,10 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 247
+timespan = 116
 collect['timespan'] = timespan
 
-resolution = 247
+resolution = 116
 collect['resolution'] = resolution
 
 object_type = Meraki::ObjectTypeEnum::PERSON
@@ -3974,7 +3974,7 @@ collect = Hash.new
 network_id = 'networkId'
 collect['network_id'] = network_id
 
-with_details = true
+with_details = false
 collect['with_details'] = with_details
 
 
@@ -4046,7 +4046,7 @@ collect['network_id'] = network_id
 target_group_id = 'targetGroupId'
 collect['target_group_id'] = target_group_id
 
-with_details = true
+with_details = false
 collect['with_details'] = with_details
 
 
@@ -4352,7 +4352,7 @@ collect['network_id'] = network_id
 t0 = 't0'
 collect['t0'] = t0
 
-timespan = 247
+timespan = 116
 collect['timespan'] = timespan
 
 
@@ -5130,7 +5130,7 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 84
+timespan = 116
 collect['timespan'] = timespan
 
 uplink = 'uplink'
@@ -7732,10 +7732,10 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 42
+timespan = 74
 collect['timespan'] = timespan
 
-per_page = 42
+per_page = 74
 collect['per_page'] = per_page
 
 starting_after = 'startingAfter'
@@ -7786,10 +7786,10 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 42
+timespan = 74
 collect['timespan'] = timespan
 
-per_page = 42
+per_page = 74
 collect['per_page'] = per_page
 
 starting_after = 'startingAfter'
@@ -7840,10 +7840,10 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 42
+timespan = 74
 collect['timespan'] = timespan
 
-per_page = 42
+per_page = 74
 collect['per_page'] = per_page
 
 starting_after = 'startingAfter'
@@ -7903,7 +7903,7 @@ collect['ssid_number'] = ssid_number
 login_identifier = 'loginIdentifier'
 collect['login_identifier'] = login_identifier
 
-timespan = 42
+timespan = 74
 collect['timespan'] = timespan
 
 
@@ -9461,10 +9461,10 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 42
+timespan = 166
 collect['timespan'] = timespan
 
-per_page = 42
+per_page = 166
 collect['per_page'] = per_page
 
 starting_after = 'startingAfter'
@@ -9530,13 +9530,13 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 42
+timespan = 166
 collect['timespan'] = timespan
 
-ssid = 42
+ssid = 166
 collect['ssid'] = ssid
 
-vlan = 42
+vlan = 166
 collect['vlan'] = vlan
 
 ap_tag = 'apTag'
@@ -9585,13 +9585,13 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 42
+timespan = 166
 collect['timespan'] = timespan
 
-ssid = 42
+ssid = 166
 collect['ssid'] = ssid
 
-vlan = 42
+vlan = 166
 collect['vlan'] = vlan
 
 ap_tag = 'apTag'
@@ -9646,13 +9646,13 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 42
+timespan = 166
 collect['timespan'] = timespan
 
-ssid = 42
+ssid = 166
 collect['ssid'] = ssid
 
-vlan = 42
+vlan = 166
 collect['vlan'] = vlan
 
 ap_tag = 'apTag'
@@ -9705,13 +9705,13 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 42
+timespan = 166
 collect['timespan'] = timespan
 
-ssid = 42
+ssid = 166
 collect['ssid'] = ssid
 
-vlan = 42
+vlan = 166
 collect['vlan'] = vlan
 
 ap_tag = 'apTag'
@@ -9762,13 +9762,13 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 42
+timespan = 166
 collect['timespan'] = timespan
 
-ssid = 42
+ssid = 166
 collect['ssid'] = ssid
 
-vlan = 42
+vlan = 166
 collect['vlan'] = vlan
 
 ap_tag = 'apTag'
@@ -9816,13 +9816,13 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 42
+timespan = 166
 collect['timespan'] = timespan
 
-ssid = 42
+ssid = 166
 collect['ssid'] = ssid
 
-vlan = 42
+vlan = 166
 collect['vlan'] = vlan
 
 ap_tag = 'apTag'
@@ -9871,13 +9871,13 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 42
+timespan = 166
 collect['timespan'] = timespan
 
-ssid = 42
+ssid = 166
 collect['ssid'] = ssid
 
-vlan = 42
+vlan = 166
 collect['vlan'] = vlan
 
 ap_tag = 'apTag'
@@ -9932,13 +9932,13 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 42
+timespan = 166
 collect['timespan'] = timespan
 
-ssid = 42
+ssid = 166
 collect['ssid'] = ssid
 
-vlan = 42
+vlan = 166
 collect['vlan'] = vlan
 
 ap_tag = 'apTag'
@@ -9991,13 +9991,13 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 42
+timespan = 166
 collect['timespan'] = timespan
 
-ssid = 42
+ssid = 166
 collect['ssid'] = ssid
 
-vlan = 42
+vlan = 166
 collect['vlan'] = vlan
 
 ap_tag = 'apTag'
@@ -10050,13 +10050,13 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 42
+timespan = 166
 collect['timespan'] = timespan
 
-ssid = 42
+ssid = 166
 collect['ssid'] = ssid
 
-vlan = 42
+vlan = 166
 collect['vlan'] = vlan
 
 ap_tag = 'apTag'
@@ -10111,13 +10111,13 @@ collect['t0'] = t0
 t1 = 't1'
 collect['t1'] = t1
 
-timespan = 42
+timespan = 166
 collect['timespan'] = timespan
 
-ssid = 42
+ssid = 166
 collect['ssid'] = ssid
 
-vlan = 42
+vlan = 166
 collect['vlan'] = vlan
 
 ap_tag = 'apTag'
