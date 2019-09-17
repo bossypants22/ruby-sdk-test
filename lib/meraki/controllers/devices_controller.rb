@@ -283,9 +283,9 @@ module Meraki
     # @param [Integer] resolution Optional parameter: The time resolution in
     # seconds for returned data. The valid resolutions are: 60, 600, 3600,
     # 86400. The default is 60.
-    # @param [String] uplink Optional parameter: The WAN uplink used to obtain
-    # the requested stats. Valid uplinks are wan1, wan2, cellular. The default
-    # is wan1.
+    # @param [UplinkEnum] uplink Optional parameter: The WAN uplink used to
+    # obtain the requested stats. Valid uplinks are wan1, wan2, cellular. The
+    # default is wan1.
     # @return Mixed response from the API call
     def get_network_device_loss_and_latency_history(options = {})
       # Validate required parameters.

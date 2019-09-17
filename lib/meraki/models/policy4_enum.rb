@@ -4,12 +4,9 @@
 # ( https://apimatic.io ).
 
 module Meraki
-  # 'allow' or 'deny' traffic specified by this rule
-  class PolicyEnum
-    POLICY_ENUM = [
-      # TODO: Write general description for ALLOW
-      ALLOW = 'allow'.freeze,
-
+  # 'Deny' traffic specified by this rule
+  class Policy4Enum
+    POLICY4_ENUM = [
       # TODO: Write general description for DENY
       DENY = 'deny'.freeze
     ].freeze
