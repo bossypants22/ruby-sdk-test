@@ -20,7 +20,7 @@ module Meraki
     # @param [String] network_id Required parameter: Example:
     # @param [String] t0 Optional parameter: The beginning of the timespan for
     # the data. The maximum lookback period is 7 days from today.
-    # @param [Integer] timespan Optional parameter: The timespan for which the
+    # @param [Float] timespan Optional parameter: The timespan for which the
     # information will be fetched. If specifying timespan, do not specify
     # parameter t0. The value must be in seconds and be less than or equal to 7
     # days. The default is 1 day.
